@@ -18,13 +18,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href=${pageContext.request.contextPath}"/img/favicon.png" />
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon.png" />
     <script defer src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.bundle.js"></script>
     <title>Cupcakes</title>
 </head>
+
 <body>
 <div id="container-hero">
-    <img class="w-100 h-auto" src=${pageContext.request.contextPath}"/img/banner.png" alt="cupcake banner" />
+    <img class="w-100 h-auto" src="${pageContext.request.contextPath}/img/banner.png" alt="cupcake banner" />
 </div>
 
 <header class="p-lg-3 p-0 mb-3 border-bottom bg-light sticky-top">
@@ -32,10 +33,10 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start py-lg-0 py-md-3" id="logo">
             <ul class="nav col-lg-auto me-lg-auto justify-content-center mb-md-2 mb-0">
                 <li>
-                    <a class="nav-link px-2 text-secondary" href="${pageContext.request.contextPath}/">Hjem</a>
+                    <a class="nav-link px-2 text-secondary" href="/">Hjem</a>
                 </li>
                 <li>
-                    <a class="nav-link px-2 text-secondary" href="${pageContext.request.contextPath}/orders">Ordrer</a>
+                    <a class="nav-link px-2 text-secondary" href="/orders">Ordrer</a>
                 </li>
                 <li>
                     <a class="nav-link px-2 text-secondary">Kunder</a>

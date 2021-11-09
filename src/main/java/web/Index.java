@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "Index", value = "/")
+@WebServlet(name = "Index", value = "")
 public class Index extends HttpServlet {
 
 
