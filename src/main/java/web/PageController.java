@@ -1,4 +1,7 @@
 package web;
 
-public class PageController {
+import javax.servlet.http.HttpServlet;
+
+public class PageController extends HttpServlet {
+
 }
