@@ -18,13 +18,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/favicon.png" />
+    <link rel="icon" type="image/png" href=${pageContext.request.contextPath}"/img/favicon.png" />
     <script defer src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.bundle.js"></script>
     <title>Cupcakes</title>
 </head>
 <body>
 <div id="container-hero">
-    <img class="w-100 h-auto" src="${pageContext.request.contextPath}/img/banner.png" alt="cupcake banner" />
+    <img class="w-100 h-auto" src=${pageContext.request.contextPath}"/img/banner.png" alt="cupcake banner" />
 </div>
 
 <header class="p-lg-3 p-0 mb-3 border-bottom bg-light sticky-top">
