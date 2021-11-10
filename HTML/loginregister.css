@@ -1,5 +1,17 @@
 .container  {
-    float: right;
+    position: absolute;
     width: 33.33%;
-    
+    right: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+
+
+}
+
+
+.inputfield   {
+
+    width: 95%;
+
+
 }
