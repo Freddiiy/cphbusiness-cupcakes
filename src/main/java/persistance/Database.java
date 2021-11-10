@@ -26,7 +26,6 @@ public class Database
             PASSWORD = password;
             URL = url;
         }
-        Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
     public Connection connect() throws SQLException
