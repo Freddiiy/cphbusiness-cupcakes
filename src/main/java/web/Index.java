@@ -1,5 +1,6 @@
 package web;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import persistance.DBcredentials;
 import persistance.Database;
 
@@ -10,15 +11,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
+
 @WebServlet(name = "Index", value = "")
 public class Index extends HttpServlet {
-    public final static String USER = DBcredentials.getUser();
-    public final static String PASSWORD = DBcredentials.getPassword();
-    public final static String URL = DBcredentials.getUrl();
+    public static Dotenv dotenv = (Dotenv) Dotenv.configure().directory("./").filename("env");
+
+    public final static String USER = dotenv.get("USER");
+    public final static String PASSWORD = dotenv.get("PASSWORD");
+    public final static String URL = dotenv.get("URL");
 
     public static Database database;
 
-    public void initDB() {
+    public void init() {
+        System.out.println(USER + " " + PASSWORD + " " + URL);
         if (database == null) {
             try {
                 database = new Database(USER, PASSWORD, URL);

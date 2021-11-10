@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.util.Scanner;
 
 public class DBcredentials {
+
+    //TODO: Make better this is bad
     public static Connection getConnection() {
 
         File login = new File("dbcred.txt");
