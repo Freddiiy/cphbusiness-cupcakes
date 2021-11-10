@@ -1,17 +1,47 @@
-.container  {
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Exo+2:wght@300&family=Work+Sans:wght@500&display=swap%27');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Work Sans;
+    background-color: #D9CAB3;
+}
+
+.container {
     position: absolute;
     width: 33.33%;
-    right: 20px;
+    right: 0;
     top: 50%;
     transform: translate(0, -50%);
 
-
 }
 
+.loginForm {
+    width: 100%;
+}
 
-.inputfield   {
+.loginForm input {
+    width: calc(33.33vw - 100px);
+    border: 1px solid black;
+    height: 28px;
+    font-family: Work Sans;
+    background-color: #f5e2c6;
+    border-radius: 5px;
+}
 
-    width: 95%;
+.loginForm input[type="submit"] {
+    margin-top: 10px;
+    width: calc(33.33vw - 90px);
+    cursor: pointer;
+    transition: 0.25s;
+}
 
+.loginForm input[type="submit"]:hover {
+    background-color: paleturquoise;
+}
 
+.picture {
+    width: 66.66%;
+    height: 100vh;
+    background-size: cover;
 }
