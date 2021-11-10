@@ -1,4 +1,4 @@
-package DBAccess;
+package persistance;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +23,9 @@ public class DBcredentials {
         String url = "";
         String user = "";
         String password = "";
-        while (scanner.hasNext()) {
+        while (true) {
+            assert scanner != null;
+            if (!scanner.hasNext()) break;
             String[] data = scanner.nextLine().split("=");
             switch (data[0]) {
                 case "url": url = data[1]; break;
@@ -40,7 +42,9 @@ public class DBcredentials {
         return connection;
     }
 
-    public String getUrl() {
+    public static String getUrl() {
+        String url = "";
+
         File login = new File("dbcred.txt");
         Scanner scanner = null;
         try {
@@ -49,14 +53,62 @@ public class DBcredentials {
             System.out.println("File not found");
             createDBlogin();
 
-            String url = "";
-            while (scanner.hasNext()) {
+            while (true) {
+                assert false;
+                if (!scanner.hasNext()) break;
                 String[] data = scanner.nextLine().split("=");
-                switch (data[0]) {
-                    case "url": url = data[1]; break;
+                if ("url".equals(data[0])) {
+                    url = data[1];
                 }
             }
         }
+        return url;
+    }
+
+    public static String getUser() {
+        String username = "";
+
+        File login = new File("dbcred.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(login);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            createDBlogin();
+
+            while (true) {
+                assert false;
+                if (!scanner.hasNext()) break;
+                String[] data = scanner.nextLine().split("=");
+                if ("username".equals(data[0])) {
+                    username = data[1];
+                }
+            }
+        }
+        return username;
+    }
+
+    public static String getPassword() {
+        String password = "";
+
+        File login = new File("dbcred.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(login);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            createDBlogin();
+
+            while (true) {
+                assert false;
+                if (!scanner.hasNext()) break;
+                String[] data = scanner.nextLine().split("=");
+                if ("password".equals(data[0])) {
+                    password = data[1];
+                }
+            }
+        }
+        return password;
     }
 
     public static void createDBlogin() {
