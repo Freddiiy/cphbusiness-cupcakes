@@ -11,19 +11,35 @@
 
 <t:head>
     <jsp:body>
-        <html>
-        <head>
-            <title>Title</title>
-        </head>
-        <body>
-        <div class="container">
-            <div class="row px-0 align-items-center ">
-                <div class="col-lg-7">
-                    <img src="${pageContext.request.contextPath}/resources/img/loginimg.jpg" height="100%">
+        <div class="d-flex align-items-center min-vh-100 bg-light nopadding">
+            <div class="container-fluid nopadding">
+                <div class="row nopadding">
+                    <div class="col-0 col-md-4 col-lg-6 col-xl-8 bg-img d-none d-md-block nopadding">
+                    </div>
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-4 align-items-center my-auto">
+                        <div class="p-5">
+
+                            <form action="${pageContext.request.contextPath}/register" method="post" id="login-form" class="needs-validation">
+                                <h3 class="pb-3">Log ind på Olskers Cupckes.</h3>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                                    <label for="floatingInput">Email adresse</label>
+                                    <div class="invalid-feedback">Venligst angiv en gyldig email.</div>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                    <label for="floatingPassword">Gentag kodeord</label>
+                                    <div class="invalid-feedback">Venligst angiv et gyldigt kodeord</div>
+                                </div>
+                                <button class="w-100 btn btn-lg btn-cupcakes-secondary" type="submit" id="sendButton">Log ind</button>
+                                <hr class="my-4">
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        </body>
-        </html>
+
+        <script defer src="js/loginValidation.js"></script>
     </jsp:body>
 </t:head>

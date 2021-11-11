@@ -21,7 +21,6 @@ public class PageController extends HttpServlet {
 
     @Override
     public void init() {
-        System.out.println(USER + " " + PASSWORD + " " + URL);
         if (database == null) {
             try {
                 database = new Database(USER, PASSWORD, URL);
