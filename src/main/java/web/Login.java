@@ -28,6 +28,12 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
 
         User user = new User(email, password, "Costumer");
+        try {
+            UserLogic userLogic = new UserLogic(new Database());
+            userLogic.getUserFromDb(email, password);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 

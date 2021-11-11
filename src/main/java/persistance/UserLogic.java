@@ -2,10 +2,7 @@ package persistance;
 
 import entities.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UserLogic {
     private final Database database;
@@ -15,7 +12,7 @@ public class UserLogic {
     }
 
     public void insertUserToDb(User user) {
-        String sql = "INSERT INTO Users (username, password, balance, role) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO Users (email, password, balance, role) VALUES(?, ?, ?, ?)";
 
         try (Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -32,11 +29,37 @@ public class UserLogic {
 
     }
 
-    public void getUserFromDb(String email, String password) {
+    public User getUserFromDb(String email, String password) {
+        String sql = "SELECT * from Users WHERE email=? AND password=?";
+
+
         try(Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, email);
+            ps.setString(2, password);
+
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id_user");
+                String emailFromDb = resultSet.getString("email");
+                String passwordFromDb = resultSet.getString("password");
+                int balanceFromDb = resultSet.getInt("balance");
+                String roleFromDb = resultSet.getString("role");
+
+                if(email.equals(emailFromDb) && password.equals(passwordFromDb)) {
+                    User user = new User(emailFromDb, passwordFromDb, balanceFromDb, roleFromDb);
+                    System.out.println(user);
+                    return new User(emailFromDb, passwordFromDb, balanceFromDb, roleFromDb);
+                }
+
+            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return null;
     }
+
+
 }
