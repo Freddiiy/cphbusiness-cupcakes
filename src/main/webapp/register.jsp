@@ -14,13 +14,14 @@
     <div class="d-flex align-items-center min-vh-100 bg-light nopadding">
       <div class="container-fluid nopadding">
         <div class="row nopadding">
-          <div class="col-0 col-md-4 col-lg-6 col-xl-8 bg-img d-none d-md-block nopadding">
+          <div class="col-0 col-md-4 col-lg-6 col-xl-8 d-none d-md-block nopadding register-img">
           </div>
           <div class="col-12 col-md-8 col-lg-6 col-xl-4 align-items-center my-auto">
             <div class="p-5">
 
-              <form action="${pageContext.request.contextPath}/register" method="post" id="login-form" class="needs-validation" oninput='password2.setCustomValidity(password2.value !== password1.value ? "was-validated" : "")'>
-                <h3 class="pb-3">Log ind på Olskers Cupckes.</h3>
+              <form action="${pageContext.request.contextPath}/register" method="post" id="login-form" class="needs-validation text-center" oninput='password2.setCustomValidity(password2.value !== password1.value ? "was-validated" : "")'>
+                <img class="mb-4 center" src="resources/img/favicon.png" alt width="92" height="92">
+                <h4 class="pb-3">Registrer dig på Olskers Cupckes.</h4>
                 <div class="form-floating mb-3">
                   <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                   <label for="floatingInput">Email adresse</label>
@@ -37,7 +38,7 @@
                   <div class="invalid-feedback">Kodeorderne matcher ikke.</div>
                 </div>
                 <hr class="my-4">
-                <button class="w-100 btn btn-lg btn-cupcakes-secondary" type="submit" id="sendButton">Log ind</button>
+                <button class="w-100 btn btn-lg btn-cupcakes-secondary" type="submit" id="sendButton">Tilmeld</button>
               </form>
             </div>
           </div>
