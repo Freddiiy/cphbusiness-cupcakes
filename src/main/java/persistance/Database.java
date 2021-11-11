@@ -25,6 +25,7 @@ public class Database {
             PASSWORD = password;
             URL = url;
         }
+        Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
     public Database() throws ClassNotFoundException {
@@ -41,6 +42,7 @@ public class Database {
             PASSWORD = dotenv.get("PASSWORD");
             URL = dotenv.get("URL");
         }
+        Class.forName("com.mysql.cj.jdbc.Driver");
     }
 
     public Connection connect() throws SQLException {
