@@ -19,7 +19,7 @@ public class testLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("email") != null) {
+        if (session.getAttribute("email") != null && (Boolean) session.getAttribute("loggedIn")) {
             request.getRequestDispatcher("/testLogin.jsp").forward(request, response);
         } else {
             PrintWriter pw = response.getWriter();

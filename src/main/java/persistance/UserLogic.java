@@ -13,7 +13,7 @@ public class UserLogic {
     }
 
     public boolean isLoggedIn(HttpSession session, User user) {
-        return session.getAttribute("email").equals(user.getEmail());
+        return session.getAttribute("email").equals(user.getEmail()) && user.getPassword().equals(getUserFromDb( (String) session.getAttribute("email"), user.getPassword()).getPassword());
     }
 
     public void insertUserToDb(User user) {
