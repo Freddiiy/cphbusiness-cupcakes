@@ -2,6 +2,7 @@ package persistance;
 
 import entities.User;
 
+import javax.servlet.http.HttpSession;
 import java.sql.*;
 
 public class UserLogic {
@@ -9,6 +10,10 @@ public class UserLogic {
 
     public UserLogic(Database database) {
         this.database = database;
+    }
+
+    public boolean isLoggedIn(HttpSession session, User user) {
+        return session.getAttribute("email").equals(user.getEmail());
     }
 
     public void insertUserToDb(User user) {
@@ -30,14 +35,12 @@ public class UserLogic {
     }
 
     public User getUserFromDb(String email, String password) {
-        String sql = "SELECT * from Users WHERE email=? AND password=?";
-
+        String sql = "SELECT * from Users WHERE email=?";
 
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, email);
-            ps.setString(2, password);
 
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
@@ -48,9 +51,7 @@ public class UserLogic {
                 String roleFromDb = resultSet.getString("role");
 
                 if(email.equals(emailFromDb) && password.equals(passwordFromDb)) {
-                    User user = new User(emailFromDb, passwordFromDb, balanceFromDb, roleFromDb);
-                    System.out.println(user);
-                    return new User(emailFromDb, passwordFromDb, balanceFromDb, roleFromDb);
+                    return new User(id, emailFromDb, passwordFromDb, balanceFromDb, roleFromDb);
                 }
 
             }
@@ -61,5 +62,8 @@ public class UserLogic {
         return null;
     }
 
+    public boolean userExists(User user) {
+        return user != null;
+    }
 
 }

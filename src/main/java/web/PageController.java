@@ -13,12 +13,8 @@ import javax.servlet.annotation.*;
 public class PageController extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
-    }
-
-    @Override
-    public void destroy() {
     }
 }

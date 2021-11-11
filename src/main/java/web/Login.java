@@ -18,20 +18,32 @@ import javax.xml.crypto.Data;
 public class Login extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        User user = new User(email, password, "Costumer");
         try {
             UserLogic userLogic = new UserLogic(new Database());
-            userLogic.getUserFromDb(email, password);
-        } catch (ClassNotFoundException e) {
+            User user = userLogic.getUserFromDb(email, password);
+
+            if(userLogic.userExists(user)) {
+
+                HttpSession session = request.getSession();
+
+                session.setAttribute("email", user.getEmail());
+                session.setAttribute("role", user.getRole());
+
+                response.sendRedirect(request.getContextPath() + "/testLogin");
+            } else {
+                PrintWriter pw = response.getWriter();
+                pw.print("Email eller kodeord forkert");
+            }
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
 

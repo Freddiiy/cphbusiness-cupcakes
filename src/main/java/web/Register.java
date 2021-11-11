@@ -17,11 +17,11 @@ import javax.servlet.annotation.*;
 public class Register extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
