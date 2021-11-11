@@ -30,7 +30,7 @@
     <div class="navBar">
         <ul>
             <li><a href="">Olsker Cupcakes</a></li>
-            <li><a href="shop">Webshop</a></li>
+            <li><a href="${pageContext.request.contextPath}/register">Webshop</a></li>
             <li><a href="nyheder">Nyheder</a></li>
             <li><a href="omus">Om Os</a></li>
             <li><a href="kurv" style="float: right;">Kurv</a></li>

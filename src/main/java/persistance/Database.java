@@ -1,35 +1,49 @@
 package persistance;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Database
-{
+public class Database {
     private Connection connection;
     private final String USER;
     private final String PASSWORD;
     private final String URL;
 
-    public Database(String user, String password, String url) throws ClassNotFoundException
-    {
+    public Database(String user, String password, String url) throws ClassNotFoundException {
         String deployed = System.getenv("DEPLOYED");
-        if (deployed != null)
-        {
+        if (deployed != null) {
             // Prod: hent variabler fra setenv.sh i Tomcats bin folder
             USER = System.getenv("JDBC_USER");
             PASSWORD = System.getenv("JDBC_PASSWORD");
             URL = System.getenv("JDBC_CONNECTION_STRING");
-        } else
-        {
+        } else {
             USER = user;
             PASSWORD = password;
             URL = url;
         }
     }
 
-    public Connection connect() throws SQLException
-    {
+    public Database() throws ClassNotFoundException {
+        String deployed = System.getenv("DEPLOYED");
+        if (deployed != null) {
+            // Prod: hent variabler fra setenv.sh i Tomcats bin folder
+            USER = System.getenv("JDBC_USER");
+            PASSWORD = System.getenv("JDBC_PASSWORD");
+            URL = System.getenv("JDBC_CONNECTION_STRING");
+        } else {
+            Dotenv dotenv = Dotenv.configure().load();
+
+            USER = dotenv.get("USER");
+            PASSWORD = dotenv.get("PASSWORD");
+            URL = dotenv.get("URL");
+        }
+    }
+
+    public Connection connect() throws SQLException {
         Connection connection = null;
         connection = DriverManager.getConnection(URL, USER, PASSWORD);
         return connection;

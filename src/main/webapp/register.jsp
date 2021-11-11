@@ -20,25 +20,28 @@
             <div class="p-5">
 
               <form action="${pageContext.request.contextPath}/register" method="post" id="login-form" class="needs-validation text-center" oninput='password2.setCustomValidity(password2.value !== password1.value ? "was-validated" : "")'>
-                <img class="mb-4 center" src="resources/img/favicon.png" alt width="92" height="92">
+                <img class="mb-4 center rounded-3" src="resources/img/favicon.png" alt width="92" height="92">
                 <h4 class="pb-3">Registrer dig på Olskers Cupckes.</h4>
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                  <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                   <label for="floatingInput">Email adresse</label>
                   <div class="invalid-feedback">Venligst angiv en gyldig email.</div>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password1" required>
+                  <input name="password1" type="password" class="form-control" id="floatingPassword" placeholder="Password"required>
                   <label for="floatingPassword">Kodeord</label>
                   <div class="invalid-feedback">Venligst angiv et gyldigt kodeord.</div>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPasswordRepeat" placeholder="Password" name="password2" required>
+                  <input name="password2" type="password" class="form-control" id="floatingPasswordRepeat" placeholder="Password"required>
                   <label for="floatingPasswordRepeat">Kodeord</label>
                   <div class="invalid-feedback">Kodeorderne matcher ikke.</div>
                 </div>
                 <hr class="my-4">
                 <button class="w-100 btn btn-lg btn-cupcakes-secondary" type="submit" id="sendButton">Tilmeld</button>
+                <div class="py-2">
+                  <small class="text-muted">Har du allerede en bruger? <a class="text-cupcakes text-decoration-none" href="${pageContext.request.contextPath}/login">Log ind</a></small>
+                </div>
               </form>
             </div>
           </div>

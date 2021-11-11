@@ -16,6 +16,17 @@
     background-size: cover;
 }
 
+.text-cupcakes {
+    color: #c5a877;
+    transition: all;
+    transition-duration: 200ms;
+}
+.text-cupcakes:hover {
+    color: #6c5b31;
+    transition: all;
+    transition-duration: 200ms;
+}
+
 .btn-cupcakes-primary {
     background-color: #D9CAB3;
 }
