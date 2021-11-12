@@ -23,7 +23,7 @@
         </div>
 
         <!-- Cards container-->
-        <div class="container py-3">
+        <div class="container py-3 py-md-5">
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-4">
 
                 <!-- Cards -->
@@ -31,7 +31,7 @@
                     <div class="card mb-3">
                         <div class="row g-0">
                             <div class="col-12 col-md-12 col-lg-5 p-0 pt-lg overflow-hidden">
-                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/card-img.png" alt="...">
+                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/cardImg/card-img.png" alt="...">
                             </div>
                             <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
                                 <div class="card-body">
@@ -46,7 +46,7 @@
                     <div class="card mb-3">
                         <div class="row g-0">
                             <div class="col-12 col-md-12 col-lg-5 p-0 pt-lg overflow-hidden">
-                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/card-img-2.png" alt="...">
+                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/cardImg/card-img-2.png" alt="...">
                             </div>
                             <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
                                 <div class="card-body">
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="${pageContext.request.contextPath}/resources/img/card-img.png"
+                        <img src="${pageContext.request.contextPath}/resources/img/cardImg/card-img.png"
                              class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>

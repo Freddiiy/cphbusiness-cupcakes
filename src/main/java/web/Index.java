@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 
-@WebServlet(name = "Index", urlPatterns = {""})
+@WebServlet(name = "Index", urlPatterns = {"*"})
 public class Index extends HttpServlet {
 
     Dotenv dotenv = Dotenv.configure().load();

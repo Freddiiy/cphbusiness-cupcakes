@@ -41,14 +41,27 @@
                     </ul>
                 </div>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                    <ul class="navbar-nav list-group list-group-horizontal">
-                        <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
-                            <a class="btn btn-outline-light" href="/login" value="Log ind">Log Ind</a>
-                        </li>
-                        <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
-                            <a class="btn btn-outline-light" href="/register" value="Registrer">Registrer</a>
-                        </li>
-                    </ul>
+                <c:choose>
+                    <c:when test="${sessionScope.get('sessionID') != null}">
+                        <ul class="navbar-nav list-group list-group-horizontal">
+                            <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
+                                <a class="nav-link">${sessionScope.get('email')}</a>
+                            </li>
+                            <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
+                                <a class="btn btn-outline-light" href="/logout" value="Registrer">Log ud</a>
+                            </li>
+                    </c:when>
+                            <c:otherwise>
+                            <ul class="navbar-nav list-group list-group-horizontal">
+                                <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
+                                    <a class="btn btn-outline-light" href="/login" value="Log ind">Log Ind</a>
+                                </li>
+                                <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
+                                    <a class="btn btn-outline-light" href="/register" value="Registrer">Registrer</a>
+                                </li>
+                            </ul>
+                            </c:otherwise>
+                </c:choose>
                 </div>
             </div>
         </nav>

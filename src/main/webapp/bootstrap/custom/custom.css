@@ -18,9 +18,9 @@
 
 .card-img-container {
     max-width: 720px;
-    min-width: 720px;
-    max-height: 480px;
-    min-height: 480px;
+    min-width: 480px;
+    max-height: 576px;
+    min-height: 280px;
 }
 
 .landing-header {
