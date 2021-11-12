@@ -5,61 +5,87 @@
 <t:navbar>
 
     <jsp:body>
-        <div class="mainContainer">
-            <div class="heroVideo">
-                <div class="headerText">
-                    <h1>Velkommen til <span style="font-family: Architects Daughter">Olsker Cupcakes</span></h1>
-                    <h3>Til alle dine søde ønsker</h3>
-                    <div class="headerButtons">
-                        <a href="shop"><button>Webshop</button></a> <a href="#info"><button>Info</button></a>
+        <div class="landing-header">
+
+            <div class="video-overlay"></div>
+
+            <div class="container h-100">
+                <div class="d-flex h-100 text-center align-items-center">
+                    <div class="landing-container text-white w-100">
+                        <h1 class="display-3 text-shadow">Olsker Cupcakes</h1>
+                        <p class="lead mb-0 text-shadow">Cupcakes til dine lår</p>
                     </div>
                 </div>
-                <video autoplay muted loop>
-                    <source src="resources/vid/hero.mp4" type="video/mp4">
-                </video>
             </div>
+            <video class="landing-video" playsinline autoplay muted loop>
+                <source src="resources/vid/hero.mp4" type="video/mp4">
+            </video>
         </div>
 
-        <div class="pageContent">
+        <!-- Cards container-->
+        <div class="container py-3">
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 g-4">
 
-
-            <div class="cardContainer">
-                <div class="cardText">
-                    <h1>Olsker Cupcakes er mere end bare cupcakes</h1>
-                    <p>Det er løftet om en ekstraordinær smagsoplevelse. Hos Olsker Cupcakes er kvalitet og indtryk vigtige fokuspunkter som adskiller os fra andre.</p>
+                <!-- Cards -->
+                <div class="col">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-12 col-md-12 col-lg-5 p-0 pt-lg overflow-hidden">
+                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/card-img.png" alt="...">
+                            </div>
+                            <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="cardImage">
-                    <img src="https://lh3.googleusercontent.com/proxy/S4VPs81uy2jafUWgtWiyZrJq6puGo1aW4sp-MiWsN57cBWucnBGVjakuUGo1n48TYHpYKKO2sVsdzndNolCI0H1ZvEoVE8F8X0KvncsH-pVdacfhHSro35LqY-FdH1zAii7llhGr">
+                <div class="col">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-12 col-md-12 col-lg-5 p-0 pt-lg overflow-hidden">
+                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/card-img-2.png" alt="...">
+                            </div>
+                            <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="cardContainer">
-                <div class="cardText">
-                    <h1>Bagt med kærlighed og højeste kvalitet</h1>
-                    <p>Olsker Cupcakes garanterer den bedste kvalitets cupcakes med brug af eksotiske og høj-kvalitets ingredienser. Cupcakes er ikke bare en lækker snack, det er en kunstform.</p>
+                <div class="col">
+                    <div class="card">
+                        <img src="${pageContext.request.contextPath}/resources/img/card-img.png"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="cardImage">
-                    <img src="https://media.istockphoto.com/photos/tray-with-muffins-in-oven-picture-id1208245671?k=20&m=1208245671&s=612x612&w=0&h=EfubbkZ55oOBVdR6j0fNQnoN9Y2HdlFE7fsC2Gpylk0=">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-cupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="cardContainer">
-                <div class="cardText">
-                    <h1>Håndlavet fra bunden</h1>
-                    <p>Alle Olsker Cupcakes er håndlavet for at sikre den bedste kvalitet.</p>
-                </div>
-                <div class="cardImage">
-                    <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-cupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA=">
-                </div>
-            </div>
-
-            <div class="cardContainer">
-                <div class="cardText">
-                    <h1>Om Olsker Cupcakes</h1>
-                    <p>Olsker Cupcakes blev stiftet i 2019 med målet at lave cupcakes af den højeste kvalitet. Holdet bag Olsker Cupcakes har længe haft lidenskab til kunsten bag cupcakes og fører det ud i virkeligheden med over 30 forskellige varianter af cupcakes.</p>
-                </div>
-                <div class="cardImage">
-                    <img src="https://www.oetker.dk/Recipe/Recipes/oetker.dk/dk-da/baking/image-thumb__101256__RecipeDetailsLightBox/cupcakes-med-regnbue-smoercreme.jpg">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-cupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

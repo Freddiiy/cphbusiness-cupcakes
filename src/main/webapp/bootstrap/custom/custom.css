@@ -16,6 +16,53 @@
     background-size: cover;
 }
 
+.card-img-container {
+    max-width: 720px;
+    min-width: 720px;
+    max-height: 480px;
+    min-height: 480px;
+}
+
+.landing-header {
+    position: relative;
+    background-color: black;
+    height: 75vh;
+    min-height: 25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.landing-header .landing-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+.landing-header .landing-container {
+    position: relative;
+    z-index: 2;
+}
+
 .bg-cupcakes {
     background-color: #6c5b31;
 }
@@ -50,6 +97,10 @@
     color: #fff;
     background-color: #F3E2C6;
     border-color: #F3E2C6;
+}
+
+.text-shadow {
+    text-shadow: 5px 0 3px rgb(0 0 0 / 30%);
 }
 
 .nopadding {
