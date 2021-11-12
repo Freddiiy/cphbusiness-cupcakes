@@ -19,6 +19,18 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            UserLogic userLogic = new UserLogic(new Database());
+            HttpSession session = request.getSession();
+
+            if(userLogic.validateSession(session)) {
+                //request.getRequestDispatcher("/testLogin").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/");
+                return;
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
@@ -27,19 +39,21 @@ public class Login extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        HttpSession session = request.getSession();
+        String sessionID = session.getId();
+
         try {
             UserLogic userLogic = new UserLogic(new Database());
+
             User user = userLogic.getUserFromDb(email, password);
 
             if(userLogic.userExists(user)) {
 
-                HttpSession session = request.getSession();
+                session.setAttribute("email", email);
+                session.setAttribute("sessionID", sessionID);
+                userLogic.updateSessionID(email, session);
 
-                session.setAttribute("email", user.getEmail());
-                session.setAttribute("role", user.getRole());
-                session.setAttribute("loggedIn", userLogic.isLoggedIn(session, user));
-
-                response.sendRedirect(request.getContextPath() + "/testLogin");
+                response.sendRedirect(request.getContextPath() + "/");
             } else {
                 PrintWriter pw = response.getWriter();
                 pw.print("Email eller kodeord forkert");

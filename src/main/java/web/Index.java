@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 
-@WebServlet(name = "Index", value = "")
+@WebServlet(name = "Index", urlPatterns = {""})
 public class Index extends HttpServlet {
 
     Dotenv dotenv = Dotenv.configure().load();
@@ -34,7 +34,7 @@ public class Index extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/home").forward(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     @Override

@@ -6,26 +6,31 @@ public class User {
     private String password;
     private int balance;
     private String role;
+    private String sessionID;
 
-    public User(String email, String password, String role) {
+    public User(String email, String password, String role, String sessionID) {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.sessionID = sessionID;
     }
 
-    public User(String email, String password, int balance, String role) {
+    public User(String email, String password, int balance, String role, String sessionID) {
         this.email = email;
         this.password = password;
         this.balance = balance;
         this.role = role;
+        this.sessionID = sessionID;
     }
 
-    public User(int id, String email, String password, int balance, String role) {
+
+    public User(int id, String email, String password, int balance, String role, String sessionID) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.balance = balance;
         this.role = role;
+        this.sessionID = sessionID;
     }
 
     public String getEmail() {
@@ -59,5 +64,13 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getSessionID() {
+        return sessionID;
+    }
+
+    public void setSessionID(String sessionID) {
+        this.sessionID = sessionID;
     }
 }

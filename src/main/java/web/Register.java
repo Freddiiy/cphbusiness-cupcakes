@@ -18,6 +18,18 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+            UserLogic userLogic = new UserLogic(new Database());
+            HttpSession session = request.getSession();
+
+            if(userLogic.validateSession(session)) {
+                //request.getRequestDispatcher("/testLogin").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/");
+                return;
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
@@ -26,14 +38,29 @@ public class Register extends HttpServlet {
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
 
+        HttpSession session = request.getSession();
+        String sessionID = session.getId();
+
         Validation validation = new Validation();
         if (validation.validateEmail(email) && validation.matchPasswords(password1, password2)) {
-            User user = new User(email, password1, "Costumer");
+            User user = new User(email, password1, "Costumer", sessionID);
 
             try {
                 UserLogic userLogic = new UserLogic(new Database());
-                userLogic.insertUserToDb(user);
-            } catch (ClassNotFoundException e) {
+
+                if (!userLogic.emailExists(email)) {
+                    userLogic.insertUserToDb(user);
+
+                    session.setAttribute("email", email);
+                    session.setAttribute("sessionID", sessionID);
+
+                    response.sendRedirect(request.getContextPath() + "/");
+                }
+                else {
+                    PrintWriter pw = response.getWriter();
+                    pw.print("Email fines allerede");
+                }
+            } catch (ClassNotFoundException | IOException e) {
                 e.printStackTrace();
             }
         }

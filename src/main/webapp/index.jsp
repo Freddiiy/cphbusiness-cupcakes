@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<t:header>
+<t:navbar>
 
     <jsp:attribute name="header">
          Home
@@ -68,4 +68,4 @@
             </div>
         </div>
     </jsp:body>
-</t:header>
+</t:navbar>

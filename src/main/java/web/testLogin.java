@@ -19,11 +19,18 @@ public class testLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("email") != null && (Boolean) session.getAttribute("loggedIn")) {
-            request.getRequestDispatcher("/testLogin.jsp").forward(request, response);
-        } else {
-            PrintWriter pw = response.getWriter();
-            pw.print("Du skal logge ind for at se denne side");
+        try {
+            UserLogic userLogic = new UserLogic(new Database());
+            String sessionID = session.getId();
+
+            if (userLogic.validateSession(session)) {
+                request.getRequestDispatcher("/testLogin.jsp").forward(request, response);
+            } else {
+                session.invalidate();
+                request.getRequestDispatcher("/login").forward(request, response);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

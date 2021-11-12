@@ -34,6 +34,7 @@
             <li><a href="nyheder">Nyheder</a></li>
             <li><a href="omus">Om Os</a></li>
             <li><a href="kurv" style="float: right;">Kurv</a></li>
+            <li><a>${sessionScope.get("email")}</a></li>
         </ul>
     </div>
 </header>
