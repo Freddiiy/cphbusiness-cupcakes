@@ -56,3 +56,7 @@
     padding: 0 !important;
     margin: 0 !important;
 }
+
+.card-img-top {
+    height: 275px!important;
+}
