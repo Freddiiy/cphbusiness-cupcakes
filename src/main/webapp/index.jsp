@@ -4,10 +4,6 @@
 
 <t:navbar>
 
-    <jsp:attribute name="header">
-         Home
-    </jsp:attribute>
-
     <jsp:body>
         <div class="mainContainer">
             <div class="heroVideo">

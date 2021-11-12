@@ -24,7 +24,6 @@ public class Login extends HttpServlet {
             HttpSession session = request.getSession();
 
             if(userLogic.validateSession(session)) {
-                //request.getRequestDispatcher("/testLogin").forward(request, response);
                 response.sendRedirect(request.getContextPath() + "/");
                 return;
             }
