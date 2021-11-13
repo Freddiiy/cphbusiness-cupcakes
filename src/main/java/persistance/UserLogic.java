@@ -1,5 +1,6 @@
 package persistance;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import entities.User;
 
 import javax.crypto.SecretKeyFactory;
@@ -33,7 +34,8 @@ public class UserLogic {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
+            //ps.setString(2, user.getPassword());
+            ps.setString(2, hashPassword(user.getPassword()));
             ps.setInt(3, 0);
             ps.setString(4, user.getRole());
             ps.setString(5, user.getSessionID());
@@ -82,7 +84,7 @@ public class UserLogic {
                 String roleFromDb = resultSet.getString("role");
                 String sessionIDFromDb = resultSet.getString("sessionID");
 
-                if(email.equals(emailFromDb) && password.equals(passwordFromDb)) {
+                if(email.equals(emailFromDb) && matchHashedPassword(password, passwordFromDb)) {
                     return new User(id, emailFromDb, passwordFromDb, balanceFromDb, roleFromDb, sessionIDFromDb);
                 }
 
@@ -136,5 +138,15 @@ public class UserLogic {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    public String hashPassword(String password) {
+        char[] bcryptChars = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToChar(6,password.toCharArray());
+        return String.valueOf(bcryptChars);
+    }
+
+    public boolean matchHashedPassword(String password, String hash) {
+        BCrypt.Result result = BCrypt.verifyer(BCrypt.Version.VERSION_2Y).verify(password.toCharArray(), hash);
+        return result.verified;
     }
 }

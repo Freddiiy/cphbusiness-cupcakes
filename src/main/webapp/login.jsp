@@ -20,7 +20,9 @@
                         <div class="p-5">
 
                             <form action="${pageContext.request.contextPath}/login" method="post" id="login-form" class="needs-validation text-center">
-                                <img class="mb-4 center" src="resources/img/favicon.png" alt width="72" height="72">
+                                <a href="${pageContext.request.contextPath}/">
+                                    <img class="mb-4 center rounded-3" src="resources/img/favicon.png" alt width="92" height="92">
+                                </a>
                                 <h4 class="pb-3">Log ind på Olskers Cupckes.</h4>
                                 <div class="form-floating mb-3">
                                     <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>

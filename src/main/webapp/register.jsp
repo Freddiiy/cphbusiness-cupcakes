@@ -20,7 +20,9 @@
             <div class="p-5">
 
               <form action="${pageContext.request.contextPath}/register" method="post" id="login-form" class="needs-validation text-center" oninput='password2.setCustomValidity(password2.value !== password1.value ? "was-validated" : "")'>
-                <img class="mb-4 center rounded-3" src="resources/img/favicon.png" alt width="92" height="92">
+                <a href="${pageContext.request.contextPath}/">
+                  <img class="mb-4 center rounded-3" src="resources/img/favicon.png" alt width="92" height="92">
+                </a>
                 <h4 class="pb-3">Registrer dig på Olskers Cupckes.</h4>
                 <div class="form-floating mb-3">
                   <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>

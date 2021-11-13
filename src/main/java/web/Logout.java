@@ -1,17 +1,12 @@
 package web;
 
-import entities.User;
-import io.github.cdimascio.dotenv.Dotenv;
 import persistance.Database;
 import persistance.UserLogic;
 
 import java.io.*;
-import java.util.stream.Collectors;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import javax.xml.crypto.Data;
 
 
 @WebServlet(name = "Logout", urlPatterns = {"/logout"})

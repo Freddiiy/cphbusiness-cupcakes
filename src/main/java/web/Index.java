@@ -4,7 +4,6 @@ import io.github.cdimascio.dotenv.Dotenv;
 import persistance.Database;
 
 import java.io.*;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
