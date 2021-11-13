@@ -13,7 +13,7 @@ public class Database {
     private final String PASSWORD;
     private final String URL;
 
-    public Database(String user, String password, String url) throws ClassNotFoundException {
+    public Database(String user, String password, String url) {
         String deployed = System.getenv("DEPLOYED");
         if (deployed != null) {
             // Prod: hent variabler fra setenv.sh i Tomcats bin folder
@@ -25,10 +25,14 @@ public class Database {
             PASSWORD = password;
             URL = url;
         }
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Database() throws ClassNotFoundException {
+    public Database() {
         String deployed = System.getenv("DEPLOYED");
         if (deployed != null) {
             // Prod: hent variabler fra setenv.sh i Tomcats bin folder
@@ -42,7 +46,11 @@ public class Database {
             PASSWORD = dotenv.get("PASSWORD");
             URL = dotenv.get("URL");
         }
-        Class.forName("com.mysql.cj.jdbc.Driver");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public Connection connect() throws SQLException {

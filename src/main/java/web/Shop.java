@@ -18,17 +18,13 @@ public class Shop extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        try {
-            UserLogic userLogic = new UserLogic(new Database());
-            HttpSession session = request.getSession();
+        UserLogic userLogic = new UserLogic(new Database());
+        HttpSession session = request.getSession();
 
-            if(userLogic.validateSession(session)) {
-                //request.getRequestDispatcher("/testLogin").forward(request, response);
-                response.sendRedirect(request.getContextPath() + "/");
-                return;
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        if(userLogic.validateSession(session)) {
+            //request.getRequestDispatcher("/testLogin").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/");
+            return;
         }
         request.getRequestDispatcher("shop.jsp").forward(request, response);
     }

@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 
-@WebServlet(name = "Index", urlPatterns = {"*"})
+@WebServlet(name = "Index", urlPatterns = {""})
 public class Index extends HttpServlet {
 
     Dotenv dotenv = Dotenv.configure().load();
@@ -24,11 +24,7 @@ public class Index extends HttpServlet {
     @Override
     public void init() {
         if (database == null) {
-            try {
-                database = new Database(USER, PASSWORD, URL);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+            database = new Database(USER, PASSWORD, URL);
         }
     }
 

@@ -14,8 +14,8 @@ import javax.servlet.annotation.*;
 import javax.xml.crypto.Data;
 
 
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "Logout", urlPatterns = {"/logout"})
+public class Logout extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -23,6 +23,7 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
 
         if(userLogic.validateSession(session)) {
+            session.invalidate();
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
@@ -31,32 +32,6 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        HttpSession session = request.getSession();
-        String sessionID = session.getId();
-
-        try {
-            UserLogic userLogic = new UserLogic(new Database());
-
-            User user = userLogic.getUserFromDb(email, password);
-
-            if(userLogic.userExists(user)) {
-
-                session.setAttribute("email", email);
-                session.setAttribute("sessionID", sessionID);
-                userLogic.updateSessionID(email, session);
-
-                response.sendRedirect(request.getContextPath() + "/");
-            } else {
-                PrintWriter pw = response.getWriter();
-                pw.print("Email eller kodeord forkert");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     @Override

@@ -44,20 +44,22 @@
                 <c:choose>
                     <c:when test="${sessionScope.get('sessionID') != null}">
                         <ul class="navbar-nav list-group list-group-horizontal">
-                            <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
-                                <a class="nav-link">${sessionScope.get('email')}</a>
-                            </li>
-                            <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
-                                <a class="btn btn-outline-light" href="/logout" value="Registrer">Log ud</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.get("email")}</a>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-sm-start dropdown-menu-lg-end opacity-75" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="#">Min profil</a></li>
+                                    <li><a class="dropdown-item" href="#">Mine ordrer</a></li>
+                                    <li><a class="dropdown-item" href="/logout">Log ud</a></li>
+                                </ul>
                             </li>
                     </c:when>
                             <c:otherwise>
                             <ul class="navbar-nav list-group list-group-horizontal">
                                 <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
-                                    <a class="btn btn-outline-light" href="/login" value="Log ind">Log Ind</a>
+                                    <a class="btn btn-outline-light" href="${pageContext.request.contextPath}/login" value="Log ind">Log Ind</a>
                                 </li>
                                 <li class="nav-item row-cols-1 row-cols-lg-1 me-2">
-                                    <a class="btn btn-outline-light" href="/register" value="Registrer">Registrer</a>
+                                    <a class="btn btn-outline-light" href="${pageContext.request.contextPath}/register" value="Registrer">Registrer</a>
                                 </li>
                             </ul>
                             </c:otherwise>
