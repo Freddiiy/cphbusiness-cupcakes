@@ -23,7 +23,7 @@ public class Register extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {

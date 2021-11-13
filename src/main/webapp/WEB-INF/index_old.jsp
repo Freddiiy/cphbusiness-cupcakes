@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <video class="header-video" autoplay muted loop>
-                    <source src="resources/vid/hero.mp4" type="video/mp4">
+                    <source src="dev/cphbusiness-cupcakes/src/main/webapp/resources/vid/hero.mp4" type="video/mp4">
                 </video>
             </div>
         </div>

@@ -21,7 +21,7 @@
 
                             <form action="${pageContext.request.contextPath}/login" method="post" id="login-form" class="needs-validation text-center">
                                 <a href="${pageContext.request.contextPath}/">
-                                    <img class="mb-4 center rounded-3" src="resources/img/favicon.png" alt width="92" height="92">
+                                    <img class="mb-4 center rounded-3" src="${pageContext.request.contextPath}/resources/img/favicon.png" alt width="92" height="92">
                                 </a>
                                 <h4 class="pb-3">Log ind på Olskers Cupckes.</h4>
                                 <div class="form-floating mb-3">
@@ -46,6 +46,6 @@
             </div>
         </div>
 
-        <script defer src="js/loginValidation.js"></script>
+        <script defer src="dev/cphbusiness-cupcakes/src/main/webapp/js/loginValidation.js"></script>
     </jsp:body>
 </t:head>

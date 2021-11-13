@@ -21,7 +21,7 @@
 
               <form action="${pageContext.request.contextPath}/register" method="post" id="login-form" class="needs-validation text-center" oninput='password2.setCustomValidity(password2.value !== password1.value ? "was-validated" : "")'>
                 <a href="${pageContext.request.contextPath}/">
-                  <img class="mb-4 center rounded-3" src="resources/img/favicon.png" alt width="92" height="92">
+                  <img class="mb-4 center rounded-3" src="${pageContext.request.contextPath}/resources/img/favicon.png" alt width="92" height="92">
                 </a>
                 <h4 class="pb-3">Registrer dig på Olskers Cupckes.</h4>
                 <div class="form-floating mb-3">
@@ -51,6 +51,6 @@
       </div>
     </div>
 
-    <script defer src="js/registerValidation.js"></script>
+    <script defer src="dev/cphbusiness-cupcakes/src/main/webapp/js/registerValidation.js"></script>
   </jsp:body>
 </t:head>

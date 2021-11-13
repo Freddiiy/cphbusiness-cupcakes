@@ -23,7 +23,7 @@ public class testLogin extends HttpServlet {
         String sessionID = session.getId();
 
         if (userLogic.validateSession(session)) {
-            request.getRequestDispatcher("/testLogin.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/testLogin.jsp").forward(request, response);
         } else {
             session.invalidate();
             request.getRequestDispatcher("/login").forward(request, response);

@@ -21,6 +21,6 @@ public class Shop extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
-        request.getRequestDispatcher("shop.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
     }
 }

@@ -18,7 +18,7 @@
                 </div>
             </div>
             <video class="landing-video" playsinline autoplay muted loop>
-                <source src="resources/vid/hero.mp4" type="video/mp4">
+                <source src="${pageContext.request.contextPath}/resources/vid/hero.mp4" type="video/mp4">
             </video>
         </div>
 
