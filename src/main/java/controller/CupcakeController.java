@@ -1,4 +1,4 @@
-package persistance;
+package controller;
 
 public class CupcakeController {
     private int id;

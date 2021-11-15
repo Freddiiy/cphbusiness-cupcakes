@@ -1,7 +1,8 @@
-package persistance;
+package controller;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import model.User;
+import persistance.Database;
 
 import javax.servlet.http.HttpSession;
 import java.sql.*;

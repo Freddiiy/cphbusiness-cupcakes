@@ -2,7 +2,7 @@ package web.auth;
 
 import model.User;
 import persistance.Database;
-import persistance.UserController;
+import controller.UserController;
 
 import java.io.*;
 import javax.servlet.ServletException;
