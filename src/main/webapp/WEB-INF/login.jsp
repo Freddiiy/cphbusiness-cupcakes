@@ -23,7 +23,7 @@
                                 <a href="${pageContext.request.contextPath}/">
                                     <img class="mb-4 center rounded-3" src="${pageContext.request.contextPath}/resources/img/favicon.png" alt width="92" height="92">
                                 </a>
-                                <h4 class="pb-3">Log ind på Olskers Cupckes.</h4>
+                                <h4 class="pb-3">Log ind på Olsker Cupcakes.</h4>
                                 <div class="form-floating mb-3">
                                     <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                                     <label for="floatingInput">Email adresse</label>
@@ -46,6 +46,6 @@
             </div>
         </div>
 
-        <script defer src="dev/cphbusiness-cupcakes/src/main/webapp/js/loginValidation.js"></script>
+        <script defer src="${pageContext.request.contextPath}/js/loginValidation.js"></script>
     </jsp:body>
 </t:head>

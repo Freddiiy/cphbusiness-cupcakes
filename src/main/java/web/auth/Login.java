@@ -35,15 +35,14 @@ public class Login extends HttpServlet {
 
         try {
             UserController userController = new UserController(new Database());
-
             User user = userController.getUserFromDb(email, password);
+            user.setSessionID(sessionID);
+
 
             if(userController.emailExists(user.getEmail())) {
 
-                session.setAttribute("balance", userController.getBalance(user));
-                session.setAttribute("email", email);
-                session.setAttribute("sessionID", sessionID);
-                userController.updateSessionID(email, session);
+                session.setAttribute("user", user);
+                userController.updateSessionID(user.getEmail(), user.getSessionID());
 
                 response.sendRedirect(request.getContextPath() + "/");
             } else {

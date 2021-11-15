@@ -35,15 +35,14 @@ public class UserController {
             ps.setString(5, user.getSessionID());
 
             ps.executeUpdate();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
     }
 
-    public void updateSessionID(String email, HttpSession session) {
-        String sessionID = session.getId();
-
+    public void updateSessionID(String email, String sessionID) {
         String sql = "UPDATE Users SET sessionID = ? WHERE email = ?";
 
         try (Connection connection = database.connect()) {
@@ -62,7 +61,7 @@ public class UserController {
     //Get data
 
     public User getUserFromDb(String email, String password) {
-        String sql = "SELECT * from Users WHERE email = ?";
+        String sql = "SELECT id_user, email, password, balance, role, sessionID from Users WHERE email = ?";
 
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -101,9 +100,11 @@ public class UserController {
             ResultSet resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
+                double balance = resultSet.getDouble("balance");
+                user.setBalance(balance);
+
                 DecimalFormat df = new DecimalFormat("#0.00");
-                //return Double.parseDouble(String.format("%.2f", resultSet.getDouble("balance")));
-                return df.format(resultSet.getDouble("balance"));
+                return df.format(balance);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -111,13 +112,9 @@ public class UserController {
         return "Error";
     }
 
-    public boolean userExists(User user) {
-        return user != null;
-    }
-
     // Checks
     public boolean emailExists(String email) {
-        String sql = "SELECT COUNT(*) FROM Users WHERE email = ? ";
+        String sql = "SELECT COUNT(*) FROM Users WHERE email = ?";
 
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -127,7 +124,6 @@ public class UserController {
             ResultSet resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
-                System.out.println(resultSet.getInt("COUNT(*)"));
                 return resultSet.getInt("COUNT(*)") > 0;
             }
         } catch (SQLException throwables) {

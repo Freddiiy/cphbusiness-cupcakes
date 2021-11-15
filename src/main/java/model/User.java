@@ -1,10 +1,15 @@
 package model;
 
+import controller.UserController;
+import persistance.Database;
+
+import javax.servlet.http.HttpSession;
+
 public class User {
     private int id;
     private String email;
     private String password;
-    private int balance;
+    private double balance;
     private String role;
     private String sessionID;
 
@@ -53,7 +58,6 @@ public class User {
         return role;
     }
 
-
     public void setRole(String role) {
         this.role = role;
     }
@@ -72,5 +76,13 @@ public class User {
 
     public void setSessionID(String sessionID) {
         this.sessionID = sessionID;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

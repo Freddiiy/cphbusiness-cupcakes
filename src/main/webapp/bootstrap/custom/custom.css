@@ -76,6 +76,7 @@
     transition: all;
     transition-duration: 200ms;
 }
+
 .text-cupcakes:hover {
     color: #6c5b31;
     transition: all;
@@ -109,5 +110,9 @@
 }
 
 .card-img-top {
-    height: 275px!important;
+    height: 275px !important;
+}
+
+.sidebar-margin {
+    margin-left: 280px !important;
 }

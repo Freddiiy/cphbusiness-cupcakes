@@ -1,8 +1,14 @@
 package controller;
 
+import persistance.Database;
+
 public class CupcakeController {
-    private int id;
-    private String bottom;
-    private String topping;
-    private int amount;
+    private final Database database;
+
+    public CupcakeController(Database database) {
+        this.database = database;
+    }
+
+    public void insertOrderToDB() {
+    }
 }

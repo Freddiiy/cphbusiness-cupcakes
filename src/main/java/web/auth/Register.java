@@ -44,8 +44,7 @@ public class Register extends HttpServlet {
                 if (!userController.emailExists(email)) {
                     userController.insertUserToDb(user);
 
-                    session.setAttribute("email", email);
-                    session.setAttribute("sessionID", sessionID);
+                    session.setAttribute("user", user);
 
                     response.sendRedirect(request.getContextPath() + "/");
                 }
