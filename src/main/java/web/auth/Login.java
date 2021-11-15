@@ -40,6 +40,7 @@ public class Login extends HttpServlet {
 
             if(userController.emailExists(user.getEmail())) {
 
+                session.setAttribute("balance", userController.getBalance(user));
                 session.setAttribute("email", email);
                 session.setAttribute("sessionID", sessionID);
                 userController.updateSessionID(email, session);

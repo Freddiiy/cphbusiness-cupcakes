@@ -5,7 +5,10 @@ import model.User;
 import persistance.Database;
 
 import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 import java.sql.*;
+import java.text.DecimalFormat;
 
 public class UserController {
     private final Database database;
@@ -26,7 +29,6 @@ public class UserController {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, user.getEmail());
-            //ps.setString(2, user.getPassword());
             ps.setString(2, hashPassword(user.getPassword()));
             ps.setInt(3, 0);
             ps.setString(4, user.getRole());
@@ -88,6 +90,27 @@ public class UserController {
         return null;
     }
 
+    public String getBalance(User user) {
+        String sql = "SELECT balance FROM Users WHERE email=?";
+
+        try(Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, user.getEmail());
+
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                DecimalFormat df = new DecimalFormat("#0.00");
+                //return Double.parseDouble(String.format("%.2f", resultSet.getDouble("balance")));
+                return df.format(resultSet.getDouble("balance"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "Error";
+    }
+
     public boolean userExists(User user) {
         return user != null;
     }
@@ -132,13 +155,21 @@ public class UserController {
         return false;
     }
 
+    public byte[] getSalt() {
+        byte[] salt = new byte[16];
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.nextBytes(salt);
+        return salt;
+    }
+
     public String hashPassword(String password) {
-        char[] bcryptChars = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToChar(6,password.toCharArray());
-        return String.valueOf(bcryptChars);
+        byte[] bcryptChars = BCrypt.withDefaults().hash(6, getSalt(), password.getBytes(StandardCharsets.UTF_8));
+
+        return new String(bcryptChars, StandardCharsets.UTF_8);
     }
 
     public boolean matchHashedPassword(String password, String hash) {
-        BCrypt.Result result = BCrypt.verifyer(BCrypt.Version.VERSION_2Y).verify(password.toCharArray(), hash);
+        BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hash);
         return result.verified;
     }
 }

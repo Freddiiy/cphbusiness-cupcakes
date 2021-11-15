@@ -49,9 +49,14 @@
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-sm-start dropdown-menu-lg-end opacity-75" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="#">Min profil</a></li>
                                     <li><a class="dropdown-item" href="#">Mine ordrer</a></li>
-                                    <li><a class="dropdown-item" href="/logout">Log ud</a></li>
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log ud</a></li>
                                 </ul>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link">${sessionScope.get("balance")} kr.</a>
+                            </li>
+                        </ul>
                     </c:when>
                             <c:otherwise>
                             <ul class="navbar-nav list-group list-group-horizontal">

@@ -58,4 +58,16 @@ public class Database {
         connection = DriverManager.getConnection(URL, USER, PASSWORD);
         return connection;
     }
+
+    public String getUSER() {
+        return USER;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public String getURL() {
+        return URL;
+    }
 }
