@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 
             User user = userController.getUserFromDb(email, password);
 
-            if(userController.userExists(user)) {
+            if(userController.emailExists(user.getEmail())) {
 
                 session.setAttribute("email", email);
                 session.setAttribute("sessionID", sessionID);
