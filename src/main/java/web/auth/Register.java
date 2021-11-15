@@ -1,8 +1,8 @@
-package web;
+package web.auth;
 
-import entities.User;
+import model.User;
 import persistance.Database;
-import persistance.UserLogic;
+import persistance.UserController;
 import validation.Validation;
 
 import java.io.*;
@@ -16,10 +16,10 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        UserLogic userLogic = new UserLogic(new Database());
+        UserController userController = new UserController(new Database());
         HttpSession session = request.getSession();
 
-        if(userLogic.validateSession(session)) {
+        if(userController.validateSession(session)) {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
@@ -39,10 +39,10 @@ public class Register extends HttpServlet {
             User user = new User(email, password1, "Costumer", sessionID);
 
             try {
-                UserLogic userLogic = new UserLogic(new Database());
+                UserController userController = new UserController(new Database());
 
-                if (!userLogic.emailExists(email)) {
-                    userLogic.insertUserToDb(user);
+                if (!userController.emailExists(email)) {
+                    userController.insertUserToDb(user);
 
                     session.setAttribute("email", email);
                     session.setAttribute("sessionID", sessionID);

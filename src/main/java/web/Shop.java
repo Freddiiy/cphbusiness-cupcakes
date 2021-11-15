@@ -1,7 +1,7 @@
 package web;
 
 import persistance.Database;
-import persistance.UserLogic;
+import persistance.UserController;
 
 import java.io.*;
 import javax.servlet.ServletException;
@@ -14,10 +14,10 @@ public class Shop extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        UserLogic userLogic = new UserLogic(new Database());
+        UserController userController = new UserController(new Database());
         HttpSession session = request.getSession();
 
-        if(userLogic.validateSession(session)) {
+        if(userController.validateSession(session)) {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }

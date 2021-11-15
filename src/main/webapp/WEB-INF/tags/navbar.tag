@@ -30,13 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav justify-content-start">
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">Om mig</a>
+                            <a class="nav-link" href="#about">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#prices">Priser</a>
+                            <a class="nav-link" href="#prices">Udvalg</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">Kontakt</a>
+                            <a class="nav-link" href="#contact">Om os</a>
                         </li>
                     </ul>
                 </div>

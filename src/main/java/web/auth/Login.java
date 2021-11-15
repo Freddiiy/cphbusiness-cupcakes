@@ -1,8 +1,8 @@
-package web;
+package web.auth;
 
-import entities.User;
+import model.User;
 import persistance.Database;
-import persistance.UserLogic;
+import persistance.UserController;
 
 import java.io.*;
 import javax.servlet.ServletException;
@@ -15,10 +15,10 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        UserLogic userLogic = new UserLogic(new Database());
+        UserController userController = new UserController(new Database());
         HttpSession session = request.getSession();
 
-        if(userLogic.validateSession(session)) {
+        if(userController.validateSession(session)) {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
@@ -34,15 +34,15 @@ public class Login extends HttpServlet {
         String sessionID = session.getId();
 
         try {
-            UserLogic userLogic = new UserLogic(new Database());
+            UserController userController = new UserController(new Database());
 
-            User user = userLogic.getUserFromDb(email, password);
+            User user = userController.getUserFromDb(email, password);
 
-            if(userLogic.userExists(user)) {
+            if(userController.userExists(user)) {
 
                 session.setAttribute("email", email);
                 session.setAttribute("sessionID", sessionID);
-                userLogic.updateSessionID(email, session);
+                userController.updateSessionID(email, session);
 
                 response.sendRedirect(request.getContextPath() + "/");
             } else {

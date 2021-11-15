@@ -1,24 +1,15 @@
 package persistance;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import entities.User;
+import model.User;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.http.HttpSession;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
 
-public class UserLogic {
+public class UserController {
     private final Database database;
 
-    public UserLogic(Database database) {
+    public UserController(Database database) {
         this.database = database;
     }
 
