@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.List;
 
 public class UserController {
     private final Database database;

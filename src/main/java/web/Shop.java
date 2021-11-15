@@ -17,10 +17,6 @@ public class Shop extends HttpServlet {
         UserController userController = new UserController(new Database());
         HttpSession session = request.getSession();
 
-        if(userController.validateSession(session)) {
-            response.sendRedirect(request.getContextPath() + "/");
-            return;
-        }
         request.getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
     }
 }
