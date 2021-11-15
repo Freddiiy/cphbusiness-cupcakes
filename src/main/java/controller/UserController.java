@@ -42,6 +42,45 @@ public class UserController {
 
     }
 
+    public User getUserBySessionId(String sessionId) {
+        String sql = "SELECT (id_user ,email, balance, role) from Users WHERE sessionID = ?";
+
+        try (Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, sessionId);
+
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {
+                int id = resultSet.getInt("id_user");
+                String emailFromDb = resultSet.getString("email");
+                double balanceFromDb = resultSet.getDouble("balance");
+                String roleFromDb = resultSet.getString("role");
+                return new User(id, emailFromDb, balanceFromDb, roleFromDb, sessionId);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public String[] getOrdersFromDb(String sessionId) {
+        String sql = "SELECT (id_order, id_bottom, id_topping, amount, id_user) from Orders WHERE sessionID = ?";
+
+        try(Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, sessionId);
+
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void updateSessionID(String email, String sessionID) {
         String sql = "UPDATE Users SET sessionID = ? WHERE email = ?";
 

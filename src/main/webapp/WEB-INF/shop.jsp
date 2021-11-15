@@ -16,7 +16,7 @@
                     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                         <div class="col mb-5">
                             <div class="card h-100">
-                                <img class="card-img-top" src="dev/cphbusiness-cupcakes/src/main/webapp/resources/img/cupcakesShop/custom.jpg" alt="..." />
+                                <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/cupcakesShop/custom.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">Speciellavet cupcake</h5>
@@ -31,7 +31,7 @@
 
                         <div class="col mb-5">
                             <div class="card h-100">
-                                <img class="card-img-top" src="dev/cphbusiness-cupcakes/src/main/webapp/resources/img/cupcakesShop/strawberry.jpg" alt="..." />
+                                <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/cupcakesShop/strawberry.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <h5 class="fw-bolder">Jordbær Cupcake</h5>

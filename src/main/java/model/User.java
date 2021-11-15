@@ -20,7 +20,7 @@ public class User {
         this.sessionID = sessionID;
     }
 
-    public User(String email, String password, int balance, String role, String sessionID) {
+    public User(String email, String password, double balance, String role, String sessionID) {
         this.email = email;
         this.password = password;
         this.balance = balance;
@@ -28,11 +28,18 @@ public class User {
         this.sessionID = sessionID;
     }
 
-
-    public User(int id, String email, String password, int balance, String role, String sessionID) {
+    public User(int id, String email, String password, double balance, String role, String sessionID) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.balance = balance;
+        this.role = role;
+        this.sessionID = sessionID;
+    }
+
+    public User(int id, String email, double balance, String role, String sessionID) {
+        this.id = id;
+        this.email = email;
         this.balance = balance;
         this.role = role;
         this.sessionID = sessionID;

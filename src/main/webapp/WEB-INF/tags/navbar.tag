@@ -27,13 +27,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav justify-content-start">
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">Shop</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/shop">Shop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#prices">Udvalg</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Om os</a>
+                    <a class="nav-link" href="#about">Om os</a>
                 </li>
             </ul>
         </div>
@@ -46,12 +46,9 @@
                                data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.user.email}</a>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-sm-start dropdown-menu-lg-end opacity-75"
                                 aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Min
-                                    profil</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/orders">Mine
-                                    ordrer</a></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log ud</a>
-                                </li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Min profil</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/orders">Mine ordrer</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log ud</a></li>
                             </ul>
                         </li>
 
