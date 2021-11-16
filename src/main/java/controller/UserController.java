@@ -69,7 +69,7 @@ public class UserController {
 
     public List getOrdersFromDb(String sessionId) {
 
-        String sql = "SELECT Bottom.name, Bottom.price, Topping.name, Topping.price, (Bottom.price + Topping.price) AS total_price, amount ,Users.email FROM Orders" +
+        String sql = "SELECT Bottom.name, Bottom.price, Topping.name, Topping.price, ((Bottom.price + Topping.price) * amount) AS total_price, amount ,Users.email FROM Orders" +
                 " INNER JOIN Bottom ON Orders.id_bottom = Bottom.id_bottom" +
                 " INNER JOIN Topping ON Orders.id_topping = Topping.id_topping" +
                 " INNER JOIN Users  ON Orders.id_user = Users.id_user" +
@@ -91,7 +91,6 @@ public class UserController {
                         resultSet.getInt("amount")));
 
             }
-            System.out.println(list.size());
                 return list;
         } catch (SQLException throwables) {
             throwables.printStackTrace();

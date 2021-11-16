@@ -49,8 +49,7 @@ public class Register extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/");
                 }
                 else {
-                    PrintWriter pw = response.getWriter();
-                    pw.print("Email fines allerede");
+                    response.sendRedirect("/register?error=1");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

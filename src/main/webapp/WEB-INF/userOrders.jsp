@@ -1,12 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="controller.UserController"%>
 
 <t:head>
-    <t:sidebar>
+    <t:navbar>
         <jsp:body>
-            <div class="container">
+            <div class="container"  style="margin-top: 80px">
                 <table class="table table-striped table-borderless flex-column table-hover container" id="table">
                     <thead class="table-active">
                     <th class="col">Bottom</th>
@@ -29,5 +28,5 @@
                 </table>
             </div>
         </jsp:body>
-    </t:sidebar>
+    </t:navbar>
 </t:head>

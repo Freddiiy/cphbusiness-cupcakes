@@ -3,11 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <t:head>
-    <t:sidebar>
+    <t:navbar>
         <jsp:body>
-                <div class="container">
+                <div class="container" style="margin-top: 80px">
                     <h1>Profile page</h1>
                 </div>
         </jsp:body>
-    </t:sidebar>
+    </t:navbar>
 </t:head>

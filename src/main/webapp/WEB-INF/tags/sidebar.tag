@@ -10,7 +10,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark position-fixed" style="width: 280px; height: 100vh;">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark position-fixed" style="width: 280px;">
     <a href="/" class="d-flex align-content-center text-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <img draggable="false" class="user-select-none rounded-3" style="height: 2em; width: auto;"
              src="${pageContext.request.contextPath}/resources/img/favicon.png">
@@ -53,6 +53,6 @@
     </div>
 </div>
 
-<div id="body" class="position-absolute" style="margin-left: 280px;">
+<div id="body">
     <jsp:doBody/>
 </div>

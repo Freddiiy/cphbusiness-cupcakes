@@ -23,6 +23,11 @@
                 <a href="${pageContext.request.contextPath}/">
                   <img class="mb-4 center rounded-3" src="${pageContext.request.contextPath}/resources/img/favicon.png" alt width="92" height="92">
                 </a>
+                <c:if test="${param.error==1}">
+                  <div class="alert alert-danger" role="alert">
+                    Konto findes allerede!
+                  </div>
+                </c:if>
                 <h4 class="pb-3">Registrer dig på Olsker Cupcakes.</h4>
                 <div class="form-floating mb-3">
                   <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>

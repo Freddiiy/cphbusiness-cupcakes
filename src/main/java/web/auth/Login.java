@@ -36,18 +36,16 @@ public class Login extends HttpServlet {
         try {
             UserController userController = new UserController(new Database());
             User user = userController.getUserFromDb(email, password);
-            user.setSessionID(sessionID);
 
+            if(user != null && userController.emailExists(user.getEmail())) {
 
-            if(userController.emailExists(user.getEmail())) {
-
+                user.setSessionID(sessionID);
                 session.setAttribute("user", user);
                 userController.updateSessionID(user.getEmail(), user.getSessionID());
 
                 response.sendRedirect(request.getContextPath() + "/");
             } else {
-                PrintWriter pw = response.getWriter();
-                pw.print("Email eller kodeord forkert");
+                response.sendRedirect("/login?error=1");
             }
         } catch (IOException e) {
             e.printStackTrace();
