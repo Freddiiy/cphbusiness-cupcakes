@@ -30,12 +30,13 @@ public class CustomShop extends HttpServlet {
         model.CustomCupcake customCupcake = new model.CustomCupcake(bottom, topping, amount);
         CupcakeController cupcakeController = new CupcakeController(new Database());
 
-
-        cupcakeController.insertOrderToDB(customCupcake, sessionID);
-
         try {
             PrintWriter pw = response.getWriter();
-            pw.print(userController.getOrdersFromDb(sessionID).size());
+            String responseString = cupcakeController.insertOrderToDB(customCupcake, sessionID)
+                    ? "Din order er bekræftet!"
+                    : "Der skete desværre en fejl. Tjek om du er logget ind.";
+
+            pw.print(responseString);
         } catch (IOException e) {
             e.printStackTrace();
         }

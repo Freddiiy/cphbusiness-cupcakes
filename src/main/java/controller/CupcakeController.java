@@ -15,8 +15,11 @@ public class CupcakeController {
         this.database = database;
     }
 
-    public void insertOrderToDB(CustomCupcake customCupcake, String sessionId) {
+    public boolean insertOrderToDB(CustomCupcake customCupcake, String sessionId) {
         System.out.println(customCupcake.getBottom() + " " + customCupcake.getTopping());
+
+        if (sessionId == null) return false;
+
         String sql = "INSERT INTO Orders (id_bottom, id_topping, amount, id_user) VALUES(" +
                 "(SELECT id_bottom FROM Bottom WHERE name = ?), " +
                 "(SELECT id_topping FROM Topping WHERE name = ?), " +
@@ -32,9 +35,11 @@ public class CupcakeController {
             ps.setString(4, sessionId);
 
             ps.executeUpdate();
+            return true;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return false;
     }
 }
