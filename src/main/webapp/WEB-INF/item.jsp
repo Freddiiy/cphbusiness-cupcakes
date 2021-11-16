@@ -11,6 +11,7 @@
 <t:head>
     <t:navbar>
         <jsp:body>
+            <br><br><br><br><br>
             <p>Name: ${requestScope.name}</p>
             <p>Desc: ${requestScope.desc}</p>
             <p>Image: ${requestScope.imageURL}</p>

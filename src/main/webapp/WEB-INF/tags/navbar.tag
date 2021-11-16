@@ -30,13 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav justify-content-start">
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">Shop</a>
+                            <a class="nav-link" href="shop">Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#prices">Udvalg</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">Om os</a>
+                            <a class="nav-link" href="omos">Om os</a>
                         </li>
                     </ul>
                 </div>
@@ -53,7 +53,7 @@
                                 </ul>
                             </li>
 
-                            <li class="nav-item">
+                            <li class="nav-item" style="margin-left: 5px">
                                 <a class="nav-link">${sessionScope.get("balance")} kr.</a>
                             </li>
                         </ul>
