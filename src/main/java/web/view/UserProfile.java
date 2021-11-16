@@ -1,8 +1,8 @@
 package web.view;
 
 
-import controller.UserController;
 import persistance.Database;
+import controller.UserController;
 
 import java.io.*;
 import javax.servlet.ServletException;

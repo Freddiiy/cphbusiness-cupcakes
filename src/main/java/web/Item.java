@@ -19,9 +19,9 @@ public class Item extends HttpServlet {
         HttpSession session = request.getSession();
 
         //No ID query specified (temp)
-        if (request.getParameter("id") == null) {
+        if (request.getParameter("id") == "") {
             PrintWriter writer=response.getWriter();
-            writer.append(request.getParameter("id"));
+            writer.append("No cupcake specified");
         } else {
             String[] cupcakeData = new CupcakeInfo(new Database()).getItemFromID(request.getParameter("id"));
             request.setAttribute("name", cupcakeData[0]);
