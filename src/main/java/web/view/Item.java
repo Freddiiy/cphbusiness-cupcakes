@@ -1,4 +1,4 @@
-package web;
+package web.view;
 
 import persistance.CupcakeInfo;
 import persistance.Database;

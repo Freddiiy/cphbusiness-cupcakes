@@ -1,7 +1,6 @@
 package web.view;
 
 import controller.CupcakeController;
-import model.CustomCupcake;
 import persistance.Database;
 import controller.UserController;
 

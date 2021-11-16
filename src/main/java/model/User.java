@@ -1,10 +1,5 @@
 package model;
 
-import controller.UserController;
-import persistance.Database;
-
-import javax.servlet.http.HttpSession;
-
 public class User {
     private int id;
     private String email;

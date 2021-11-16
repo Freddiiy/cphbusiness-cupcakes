@@ -24,7 +24,7 @@
         <div class="bg-light rounded-3 text-center container py-4 mb-3 container-xl" id="welcome">
             <h1 class="display-3">Velkommen ombord</h1>
             <p class="h4">Øens bedst customCupcake. Vælg og bestil her:</p>
-            <form action="${pageContext.request.contextPath}/shop" method="POST" accept-charset="UTF-8">
+            <form action="${pageContext.request.contextPath}/shop/custom" method="POST" accept-charset="UTF-8">
                 <div class="container align-items-center p-4">
                     <div class="row d-flex">
                         <div class="col-sm col-md">

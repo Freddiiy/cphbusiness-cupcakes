@@ -4,7 +4,6 @@
 
 <t:head />
 <t:navbar>
-
     <jsp:body>
         <div class="landing-header">
 
