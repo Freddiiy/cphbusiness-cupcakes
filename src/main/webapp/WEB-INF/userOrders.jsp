@@ -1,11 +1,33 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="controller.UserController"%>
 
 <t:head>
     <t:sidebar>
         <jsp:body>
-            <div style="width: 500px; height: 500px; background-color: red;"></div>
+            <div class="container">
+                <table class="table table-striped table-borderless flex-column table-hover container" id="table">
+                    <thead class="table-active">
+                    <th class="col">Bottom</th>
+                    <th class="col">Pris</th>
+                    <th class="col">Topping</th>
+                    <th class="col">Pris</th>
+                    <th class="col">Total</th>
+                    <th class="col">Antal</th>
+                    </thead>
+                <c:forEach var="item" items="${requestScope.orderList}">
+                    <tr>
+                        <td>${item.getBottom()}</td>
+                        <td>${item.getBottomPrice()} kr.</td>
+                        <td>${item.getTopping()}</td>
+                        <td>${item.getToppingPrice()} kr.</td>
+                        <td>${item.getTotalPrice()} kr.</td>
+                        <td>${item.getAmount()} stk.</td>
+                    </tr>
+                </c:forEach>
+                </table>
+            </div>
         </jsp:body>
     </t:sidebar>
 </t:head>

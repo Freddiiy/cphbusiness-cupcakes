@@ -1,8 +1,7 @@
 package web.view;
 
 import controller.CupcakeController;
-import model.Cupcake;
-import model.User;
+import model.CustomCupcake;
 import persistance.Database;
 import controller.UserController;
 
@@ -12,13 +11,12 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 
-@WebServlet(name = "Shop", urlPatterns = {"/shop"})
-public class Shop extends HttpServlet {
+@WebServlet(name = "CustomShop", urlPatterns = {"/shop/custom"})
+public class CustomShop extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        request.getRequestDispatcher("/WEB-INF/shop_tmp.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/customShop.jsp").forward(request, response);
     }
 
     @Override
@@ -29,10 +27,19 @@ public class Shop extends HttpServlet {
 
         HttpSession session = request.getSession();
         String sessionID = session.getId();
-        Cupcake cupcake = new Cupcake(bottom, topping, amount);
+        UserController userController = new UserController(new Database());
+        model.CustomCupcake customCupcake = new model.CustomCupcake(bottom, topping, amount);
         CupcakeController cupcakeController = new CupcakeController(new Database());
 
-        cupcakeController.insertOrderToDB(cupcake, sessionID);
+
+        cupcakeController.insertOrderToDB(customCupcake, sessionID);
+
+        try {
+            PrintWriter pw = response.getWriter();
+            pw.print(userController.getOrdersFromDb(sessionID).size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

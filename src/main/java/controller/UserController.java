@@ -1,6 +1,7 @@
 package controller;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import model.CustomCupcake;
 import model.User;
 import persistance.Database;
 
@@ -9,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.sql.*;
 import java.text.DecimalFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserController {
@@ -66,21 +67,36 @@ public class UserController {
         return null;
     }
 
-    public String[] getOrdersFromDb(String sessionId) {
-        String sql = "SELECT (id_order, id_bottom, id_topping, amount, id_user) from Orders WHERE sessionID = ?";
+    public List getOrdersFromDb(String sessionId) {
 
+        String sql = "SELECT Bottom.name, Bottom.price, Topping.name, Topping.price, (Bottom.price + Topping.price) AS total_price, amount ,Users.email FROM Orders" +
+                " INNER JOIN Bottom ON Orders.id_bottom = Bottom.id_bottom" +
+                " INNER JOIN Topping ON Orders.id_topping = Topping.id_topping" +
+                " INNER JOIN Users  ON Orders.id_user = Users.id_user" +
+                " WHERE Users.id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
+
+        List<CustomCupcake> list = new ArrayList<>();
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
-
             ps.setString(1, sessionId);
 
             ResultSet resultSet = ps.executeQuery();
-            if(resultSet.next()) {
+            while(resultSet.next()) {
+                list.add(new CustomCupcake(
+                        resultSet.getString("Bottom.name"),
+                        resultSet.getDouble("Bottom.price"),
+                        resultSet.getString("Topping.name"),
+                        resultSet.getDouble("Topping.price"),
+                        resultSet.getDouble("total_price"),
+                        resultSet.getInt("amount")));
 
             }
+            System.out.println(list.size());
+                return list;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return list;
     }
 
     public void updateSessionID(String email, String sessionID) {

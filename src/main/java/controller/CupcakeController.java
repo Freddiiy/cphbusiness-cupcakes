@@ -1,10 +1,8 @@
 package controller;
 
-import model.Cupcake;
-import model.User;
+import model.CustomCupcake;
 import persistance.Database;
 
-import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,19 +15,20 @@ public class CupcakeController {
         this.database = database;
     }
 
-    public void insertOrderToDB(Cupcake cupcake, String sessionId) {
+    public void insertOrderToDB(CustomCupcake customCupcake, String sessionId) {
+        System.out.println(customCupcake.getBottom() + " " + customCupcake.getTopping());
         String sql = "INSERT INTO Orders (id_bottom, id_topping, amount, id_user) VALUES(" +
                 "(SELECT id_bottom FROM Bottom WHERE name = ?), " +
                 "(SELECT id_topping FROM Topping WHERE name = ?), " +
-                "?," +
-                " (SELECT id_user FROM Users WHERE sessionID = ?))";
+                "?, " +
+                "(SELECT id_user FROM Users WHERE sessionID = ?))";
 
         try (Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setString(1, cupcake.getBottom());
-            ps.setString(2, cupcake.getTopping());
-            ps.setInt(3, cupcake.getAmount());
+            ps.setString(1, customCupcake.getBottom());
+            ps.setString(2, customCupcake.getTopping());
+            ps.setInt(3, customCupcake.getAmount());
             ps.setString(4, sessionId);
 
             ps.executeUpdate();

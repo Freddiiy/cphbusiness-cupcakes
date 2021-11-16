@@ -70,7 +70,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-cupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
+                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-customCupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
                              class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-cupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
+                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-customCupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
                              class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>

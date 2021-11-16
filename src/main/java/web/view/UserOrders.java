@@ -2,9 +2,11 @@ package web.view;
 
 
 import controller.UserController;
+import model.CustomCupcake;
 import persistance.Database;
 
 import java.io.*;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -21,6 +23,10 @@ public class UserOrders extends HttpServlet {
         if(!userController.validateSession(session)) {
             response.sendRedirect(request.getContextPath() + "/login");
         } else {
+            String sessionID = request.getSession().getId();
+            List orderList = userController.getOrdersFromDb(sessionID);
+
+            request.setAttribute("orderList", orderList);
             request.getRequestDispatcher("/WEB-INF/userOrders.jsp").forward(request, response);
         }
     }

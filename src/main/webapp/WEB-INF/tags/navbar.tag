@@ -45,7 +45,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.user.email}</a>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-sm-start dropdown-menu-lg-end opacity-75"
-                                aria-labelledby="navbarDarkDropdownMenuLink">
+                                aria-labelledby="navbarDarkDropdownMenuLink" style="margin-top: 7px;">
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Min profil</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/orders">Mine ordrer</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log ud</a></li>

@@ -20,7 +20,7 @@
                                 <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/cupcakesShop/custom.jpg" alt="..." />
                                 <div class="card-body p-4">
                                     <div class="text-center">
-                                        <h5 class="fw-bolder">Speciellavet cupcake</h5>
+                                        <h5 class="fw-bolder">Speciellavet customCupcake</h5>
                                         30 kr.
                                     </div>
                                 </div>
