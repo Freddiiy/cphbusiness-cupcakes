@@ -22,7 +22,7 @@ public class Logout extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        response.sendRedirect("/login");
     }
 
     @Override
