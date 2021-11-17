@@ -20,7 +20,6 @@ public class Shop extends HttpServlet {
 
         List cupcakeData = new CupcakeInfo(new Database()).getAllItems();
         request.setAttribute("cupcakeData", cupcakeData);
-
         request.getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
     }
 }
