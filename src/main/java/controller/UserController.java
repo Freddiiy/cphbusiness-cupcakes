@@ -214,6 +214,14 @@ public class UserController {
         return salt;
     }
 
+    public void adminGetOrders()    {
+
+
+
+
+
+    }
+
     public String hashPassword(String password) {
         byte[] bcryptChars = BCrypt.withDefaults().hash(6, getSalt(), password.getBytes(StandardCharsets.UTF_8));
 
