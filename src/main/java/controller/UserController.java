@@ -69,7 +69,7 @@ public class UserController {
 
     public List getOrdersFromDb(String sessionId) {
 
-        String sql = "SELECT Bottom.name, Bottom.price, Topping.name, Topping.price, ((Bottom.price + Topping.price) * amount) AS total_price, amount ,Users.email FROM Orders" +
+        String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * amount) AS total_price, amount ,Users.email FROM Orders" +
                 " INNER JOIN Bottom ON Orders.id_bottom = Bottom.id_bottom" +
                 " INNER JOIN Topping ON Orders.id_topping = Topping.id_topping" +
                 " INNER JOIN Users  ON Orders.id_user = Users.id_user" +
@@ -84,9 +84,9 @@ public class UserController {
             while(resultSet.next()) {
                 list.add(new CustomCupcake(
                         resultSet.getString("Bottom.name"),
-                        resultSet.getDouble("Bottom.price"),
+                        resultSet.getDouble("Bottom.bottomPrice"),
                         resultSet.getString("Topping.name"),
-                        resultSet.getDouble("Topping.price"),
+                        resultSet.getDouble("Topping.toppingPrice"),
                         resultSet.getDouble("total_price"),
                         resultSet.getInt("amount")));
 
