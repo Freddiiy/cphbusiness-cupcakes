@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <c:choose>
-                                            <c:when test="${item.getId() == 0}">
+                                            <c:when test="${item.getId() == 1}">
                                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="shop/custom">Lav din her</a></div>
                                             </c:when>
                                             <c:otherwise>

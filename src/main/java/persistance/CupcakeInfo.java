@@ -13,9 +13,11 @@ public class CupcakeInfo {
         this.database = database;
     }
 
-    public String[] getItemFromID(String id) {
-        String sql = "SELECT * FROM PremadeCupcake, bottom.price, topping.price WHERE id_item = ?";
-        String[] info = new String[5];
+    public Cupcake getItemFromID(String id) {
+        String sql = "SELECT PremadeCupcake.*, Bottom.bottomPrice, Topping.toppingPrice FROM PremadeCupcake\n" +
+                "JOIN Bottom ON PremadeCupcake.bottom = Bottom.id_bottom\n" +
+                "JOIN Topping ON PremadeCupcake.topping = Topping.id_topping\n" +
+                "WHERE id_item = ?";
 
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -25,17 +27,22 @@ public class CupcakeInfo {
             ResultSet resultSet = ps.executeQuery();
 
             if (resultSet.next()) {
-                info[0] = resultSet.getString("name");
-                info[1] = resultSet.getString("desc");
-                info[2] = resultSet.getString("imageURL");
-                info[3] = String.valueOf(resultSet.getDouble("bottom.price"));
-                info[4] = String.valueOf(resultSet.getDouble("topping.price"));
+                return (new Cupcake(
+                    resultSet.getInt("id_item"),
+                    resultSet.getString("name"),
+                    resultSet.getString("desc"),
+                    resultSet.getString("imageURL"),
+                    resultSet.getInt("bottom"),
+                    resultSet.getInt("bottomPrice"),
+                    resultSet.getInt("topping"),
+                    resultSet.getInt("toppingPrice")
+
+                ));
             }
-            return info;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return info;
+        return null;
     }
 
     public List getAllItems() {
@@ -54,7 +61,9 @@ public class CupcakeInfo {
                     resultSet.getString("name"),
                     resultSet.getString("desc"),
                     resultSet.getString("imageURL"),
+                    resultSet.getInt("bottom"),
                     resultSet.getInt("bottomPrice"),
+                    resultSet.getInt("topping"),
                     resultSet.getInt("toppingPrice")
                 ));
             }
