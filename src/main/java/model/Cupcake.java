@@ -7,10 +7,11 @@ public class Cupcake {
     private String imageURL;
     private String bottom;
     private int bottomID;
-    private int bottomPrice;
+    private double bottomPrice;
     private String topping;
     private int toppingID;
-    private int toppingPrice;
+    private double toppingPrice;
+    private double totalPrice;
     private int amount;
 
     public Cupcake(int id, String name, String desc, String imageURL, int bottomID, int bottomPrice, int toppingID, int toppingPrice) {
@@ -27,6 +28,15 @@ public class Cupcake {
     public Cupcake(String bottom, String topping, int amount) {
         this.bottom = bottom;
         this.topping = topping;
+        this.amount = amount;
+    }
+
+    public Cupcake(String bottom, double bottomPrice, String topping, double toppingPrice, double totalPrice, int amount) {
+        this.bottom = bottom;
+        this.bottomPrice = bottomPrice;
+        this.topping = topping;
+        this.toppingPrice = toppingPrice;
+        this.totalPrice = totalPrice;
         this.amount = amount;
     }
 
@@ -50,7 +60,7 @@ public class Cupcake {
         return bottomID;
     }
 
-    public int getBottomPrice() {
+    public double getBottomPrice() {
         return bottomPrice;
     }
 
@@ -58,8 +68,16 @@ public class Cupcake {
         return toppingID;
     }
 
-    public int getToppingPrice() {
+    public double getToppingPrice() {
         return toppingPrice;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public int getAmount() {

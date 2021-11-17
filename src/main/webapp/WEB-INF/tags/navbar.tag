@@ -55,6 +55,9 @@
                         <li class="nav-item">
                             <a class="nav-link">${sessionScope.user.balance} kr.</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/cart"><img style="height: 2em; width: auto;" src="${pageContext.request.contextPath}/resources/img/shopping-cart.png" alt="Shopping cart"></a>
+                        </li>
                     </ul>
                 </c:when>
                 <c:otherwise>

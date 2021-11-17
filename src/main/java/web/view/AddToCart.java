@@ -4,7 +4,7 @@ import controller.CartController;
 import controller.CartItemsController;
 import controller.CupcakeController;
 import model.CartItems;
-import model.CustomCupcake;
+import model.Cupcake;
 import persistance.Database;
 import controller.UserController;
 
@@ -30,9 +30,9 @@ public class AddToCart extends HttpServlet {
         HttpSession session = request.getSession();
         String sessionID = session.getId();
 
-        CustomCupcake customCupcake = new CustomCupcake(bottom, topping, amount);
+        Cupcake cupcake = new Cupcake(bottom, topping, amount);
 
-        CartItems cartItems = new CartItems(customCupcake.getBottom(), customCupcake.getTopping(), customCupcake.getAmount());
+        CartItems cartItems = new CartItems(cupcake.getBottom(), cupcake.getTopping(), cupcake.getAmount());
         CartController cartController = new CartController(new Database());
         cartController.addToCart(cartItems, sessionID);
     }

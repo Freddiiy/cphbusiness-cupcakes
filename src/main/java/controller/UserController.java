@@ -1,6 +1,7 @@
 package controller;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import model.Cupcake;
 import model.CustomCupcake;
 import model.User;
 import persistance.Database;
@@ -69,20 +70,21 @@ public class UserController {
 
     public List getOrdersFromDb(String sessionId) {
 
-        String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * amount) AS total_price, amount ,Users.email FROM Orders" +
-                " INNER JOIN Bottom ON Orders.id_bottom = Bottom.id_bottom" +
-                " INNER JOIN Topping ON Orders.id_topping = Topping.id_topping" +
-                " INNER JOIN Users  ON Orders.id_user = Users.id_user" +
-                " WHERE Users.id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
+        String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * amount) AS total_price, amount ,Users.email FROM Orders " +
+                "INNER JOIN Bottom ON Orders.id_bottom = Bottom.id_bottom " +
+                "INNER JOIN Topping ON Orders.id_topping = Topping.id_topping " +
+                "INNER JOIN Users  ON Orders.id_user = Users.id_user " +
+                "WHERE Users.id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
 
-        List<CustomCupcake> list = new ArrayList<>();
+        List<Cupcake> list = new ArrayList<>();
+
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, sessionId);
 
             ResultSet resultSet = ps.executeQuery();
             while(resultSet.next()) {
-                list.add(new CustomCupcake(
+                list.add(new Cupcake(
                         resultSet.getString("Bottom.name"),
                         resultSet.getDouble("Bottom.bottomPrice"),
                         resultSet.getString("Topping.name"),
