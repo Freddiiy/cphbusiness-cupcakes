@@ -13,6 +13,12 @@ public class CartItems {
         this.amount = amount;
     }
 
+    public CartItems(String bottom, String topping, int amount) {
+        this.bottom = bottom;
+        this.topping = topping;
+        this.amount = amount;
+    }
+
     public int getId() {
         return id;
     }

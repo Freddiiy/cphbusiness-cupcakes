@@ -36,7 +36,7 @@ public class Register extends HttpServlet {
 
         Validation validation = new Validation();
         if (validation.validateEmail(email) && validation.matchPasswords(password1, password2)) {
-            User user = new User(email, password1, "Costumer", sessionID);
+            User user = new User(email, password1, "Customer", sessionID);
 
             try {
                 UserController userController = new UserController(new Database());

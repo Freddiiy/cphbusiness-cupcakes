@@ -9,5 +9,7 @@ public class CartController {
         this.database = database;
     }
 
-    public void insertIntoC
+    public void insertIntoCart() {
+
+    }
 }
