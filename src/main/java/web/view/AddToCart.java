@@ -1,6 +1,7 @@
 package web.view;
 
 import controller.CartController;
+import controller.CartItemsController;
 import controller.CupcakeController;
 import model.CartItems;
 import model.CustomCupcake;
@@ -30,10 +31,9 @@ public class AddToCart extends HttpServlet {
         String sessionID = session.getId();
 
         CustomCupcake customCupcake = new CustomCupcake(bottom, topping, amount);
-        CupcakeController cupcakeController = new CupcakeController(new Database());
 
         CartItems cartItems = new CartItems(customCupcake.getBottom(), customCupcake.getTopping(), customCupcake.getAmount());
-
-
+        CartController cartController = new CartController(new Database());
+        cartController.addToCart(cartItems, sessionID);
     }
 }

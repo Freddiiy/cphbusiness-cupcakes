@@ -11,7 +11,7 @@ import javax.servlet.annotation.*;
 
 
 @WebServlet(name = "Cart", urlPatterns = {"/cart"})
-public class Cart extends HttpServlet {
+public class CartView extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
