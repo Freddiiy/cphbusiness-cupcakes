@@ -1,9 +1,7 @@
 package controller;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import model.Cupcake;
-import model.CustomCupcake;
-import model.User;
+import model.*;
 import persistance.Database;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +20,7 @@ public class UserController {
     }
 
     public boolean isLoggedIn(HttpSession session, User user) {
-        return session.getAttribute("email").equals(user.getEmail()) && user.getPassword().equals(getUserFromDb( (String) session.getAttribute("email"), user.getPassword()).getPassword());
+        return session.getAttribute("email").equals(user.getEmail()) && user.getPassword().equals(getUserFromDb((String) session.getAttribute("email"), user.getPassword()).getPassword());
     }
 
     //Insert data
@@ -55,7 +53,7 @@ public class UserController {
             ps.setString(1, sessionId);
 
             ResultSet resultSet = ps.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 int id = resultSet.getInt("id_user");
                 String emailFromDb = resultSet.getString("email");
                 double balanceFromDb = resultSet.getDouble("balance");
@@ -66,6 +64,40 @@ public class UserController {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    public double getUserBalance(String sessionId) {
+        String sql = "SELECT (balance) from Users WHERE sessionID = ?";
+
+        try (Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, sessionId);
+
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("balance");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
+    }
+
+    public void updateBalance(double price, String sessionId) {
+
+        String sql = "UPDATE Users SET balance = balance - ? WHERE sessionID = ?";
+
+        try (Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setDouble(1, price);
+            ps.setString(2, sessionId);
+
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void updateSessionID(String email, String sessionID) {
@@ -89,7 +121,7 @@ public class UserController {
     public User getUserFromDb(String email, String password) {
         String sql = "SELECT id_user, email, password, balance, role, sessionID from Users WHERE email = ?";
 
-        try(Connection connection = database.connect()) {
+        try (Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, email);
@@ -103,7 +135,7 @@ public class UserController {
                 String roleFromDb = resultSet.getString("role");
                 String sessionIDFromDb = resultSet.getString("sessionID");
 
-                if(email.equals(emailFromDb) && matchHashedPassword(password, passwordFromDb)) {
+                if (email.equals(emailFromDb) && matchHashedPassword(password, passwordFromDb)) {
                     return new User(id, emailFromDb, passwordFromDb, balanceFromDb, roleFromDb, sessionIDFromDb);
                 }
 
@@ -118,7 +150,7 @@ public class UserController {
     public String getBalance(User user) {
         String sql = "SELECT balance FROM Users WHERE email=?";
 
-        try(Connection connection = database.connect()) {
+        try (Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, user.getEmail());
@@ -142,7 +174,7 @@ public class UserController {
     public boolean emailExists(String email) {
         String sql = "SELECT COUNT(*) FROM Users WHERE email = ?";
 
-        try(Connection connection = database.connect()) {
+        try (Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, email);
@@ -168,7 +200,7 @@ public class UserController {
             ps.setString(1, sessionID);
 
             ResultSet resultSet = ps.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 return sessionID.equals(resultSet.getString("sessionID"));
             }
         } catch (SQLException throwables) {
@@ -195,6 +227,7 @@ public class UserController {
         return result.verified;
     }
 
+    //admin permissions
     public boolean isAdmin(String sessionId) {
 
         String sql = "SELECT role FROM Users WHERE sessionID = ?";
@@ -204,7 +237,7 @@ public class UserController {
             ps.setString(1, sessionId);
 
             ResultSet resultSet = ps.executeQuery();
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 return resultSet.getString("role").equals("Admin");
             }
         } catch (SQLException throwables) {
@@ -212,4 +245,5 @@ public class UserController {
         }
         return false;
     }
+
 }

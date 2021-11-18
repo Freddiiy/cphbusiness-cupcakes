@@ -99,4 +99,45 @@ public class OrderController {
         return orderList;
 
     }
+
+    public List adminGetOrders(String sessionId) {
+        UserController userController = new UserController(new Database());
+        if (userController.isAdmin(sessionId)) {
+            String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * Orderitems.amount) AS total_price, Orderitems.id_orderitems, Orderitems.amount, Orders.id_order, Users.id_user, Users.email FROM Orders " +
+                    "INNER JOIN Orderitems ON Orders.id_orderitems = Orderitems.id_orderitems" +
+                    " JOIN Bottom ON Orderitems.id_bottom = Bottom.id_bottom " +
+                    "INNER JOIN Topping ON Orderitems.id_topping = Topping.id_topping " +
+                    "INNER JOIN Users ON Orders.id_user = Users.id_user";
+
+            List<Order> orderList = new ArrayList<>();
+
+            try (Connection connection = database.connect()) {
+                PreparedStatement ps = connection.prepareStatement(sql);
+
+                ResultSet resultSet = ps.executeQuery();
+                while (resultSet.next() && !resultSet.wasNull()) {
+                    orderList.add(new Order(resultSet.getInt("Orders.id_order"),
+                            resultSet.getString("Users.email"),
+                            resultSet.getInt("Users.id_user"),
+                            new OrderItems(resultSet.getInt("Orderitems.id_orderitems"),
+                                    resultSet.getString("Bottom.name"),
+                                    resultSet.getDouble("Bottom.bottomPrice"),
+                                    resultSet.getString("Topping.name"),
+                                    resultSet.getDouble("Topping.toppingPrice"),
+                                    resultSet.getInt("Orderitems.amount"),
+                                    resultSet.getDouble("total_price"))));
+                }
+                if (orderList.isEmpty()) {
+                    return null;
+                }
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            return orderList;
+
+        } else {
+            return null;
+        }
+    }
 }

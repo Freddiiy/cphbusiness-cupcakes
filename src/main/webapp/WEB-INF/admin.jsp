@@ -5,9 +5,42 @@
 <t:head>
     <t:navbar>
         <jsp:body>
-            <div class="container"  style="margin-top: 80px">
-                <h1>Admin panel</h1>
-            </div>
+            <c:choose>
+                <c:when test="${requestScope.orderList != null}">
+                    <div class="container" style="margin-top: 80px">
+                        <div class="bg-light rounded-3 p-0 p-md-5 mb-3">
+                            <h1>Admin siden</h1>
+
+                            <c:forEach var="item" items="${requestScope.orderList}">
+                                <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-3">
+                                    <div class="row text-start px-5">
+                                        <h4 class="col-6">Bruger: ${item.getEmail()}</h4>
+                                        <hr class="mb-5">
+
+                                        <h4 class="col-6">Bund: ${item.getOrderItems().getBottom()}</h4>
+                                        <h4 class="col-6">${item.getOrderItems().getBottomPrice()} kr.</h4>
+                                        <hr class="mb-5">
+
+                                        <h4 class="col-6">Topping: ${item.getOrderItems().getTopping()}</>
+                                        <h4 class="col-6">${item.getOrderItems().getToppingPrice()} kr.</h4> <br>
+                                        <hr class="mb-5">
+
+                                        <h4 class="col-6">Antal: ${item.getOrderItems().getAmount()}</h4>
+                                        <h4 class="col-6">i alt: ${item.getOrderItems().getTotalPrice()} kr.</h4>
+                                        <hr class="mb-3">
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="container" style="margin-top: 80px">
+                        <h1>Kunne ikke finde nogle ordre.</h1>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </jsp:body>
     </t:navbar>
+    <t:footer/>
 </t:head>

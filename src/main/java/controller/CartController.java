@@ -99,6 +99,7 @@ public class CartController {
 
     public void removeItem(int cartId, String sessionId) {
         String sql = "DELETE FROM Cart WHERE id_cart = ? AND id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
+        System.out.println(cartId);
 
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
