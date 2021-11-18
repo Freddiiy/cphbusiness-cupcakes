@@ -1,4 +1,4 @@
-package web.view;
+package web.admin;
 
 
 import controller.OrderController;

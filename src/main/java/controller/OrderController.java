@@ -59,7 +59,7 @@ public class OrderController {
             }
 
             CartController cartController = new CartController(new Database());
-            cartController.removeItem(idKey, sessionId);
+            cartController.removeCart(sessionId);
         }
     }
 
@@ -73,12 +73,12 @@ public class OrderController {
 
         List<Order> orderList = new ArrayList<>();
 
-        try(Connection connection = database.connect()) {
+        try (Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, sessionId);
 
             ResultSet resultSet = ps.executeQuery();
-            while(resultSet.next() && !resultSet.wasNull()) {
+            while (resultSet.next() && !resultSet.wasNull()) {
                 orderList.add(new Order(resultSet.getInt("Orders.id_order"),
                         resultSet.getInt("Users.id_user"),
                         new OrderItems(resultSet.getInt("Orderitems.id_orderitems"),
@@ -138,6 +138,23 @@ public class OrderController {
 
         } else {
             return null;
+        }
+    }
+
+    public void adminRemoveOrder(int orderId, String sessionId) {
+        UserController userController = new UserController(new Database());
+        if (userController.isAdmin(sessionId)) {
+
+            String sql = "DELETE FROM Orders WHERE id_order = ?";
+
+            try (Connection connection = database.connect()) {
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, orderId);
+
+                ps.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 }

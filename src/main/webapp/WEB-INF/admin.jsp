@@ -12,24 +12,33 @@
                             <h1>Admin siden</h1>
 
                             <c:forEach var="item" items="${requestScope.orderList}">
-                                <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-3">
-                                    <div class="row text-start px-5">
-                                        <h4 class="col-6">Bruger: ${item.getEmail()}</h4>
-                                        <hr class="mb-5">
+                                <form method="post" action="${pageContext.request.contextPath}/adminRemoveOrder">
 
-                                        <h4 class="col-6">Bund: ${item.getOrderItems().getBottom()}</h4>
-                                        <h4 class="col-6">${item.getOrderItems().getBottomPrice()} kr.</h4>
-                                        <hr class="mb-5">
+                                    <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-3">
+                                        <div class="row text-start px-5">
+                                            <h4 class="col-6">Bruger: ${item.getEmail()}</h4>
+                                            <h4 class="col-6">Ordre ID: ${item.getId()}</h4>
+                                            <hr class="mb-5">
 
-                                        <h4 class="col-6">Topping: ${item.getOrderItems().getTopping()}</>
-                                        <h4 class="col-6">${item.getOrderItems().getToppingPrice()} kr.</h4> <br>
-                                        <hr class="mb-5">
 
-                                        <h4 class="col-6">Antal: ${item.getOrderItems().getAmount()}</h4>
-                                        <h4 class="col-6">i alt: ${item.getOrderItems().getTotalPrice()} kr.</h4>
-                                        <hr class="mb-3">
+                                            <h4 class="col-6">Bund: ${item.getOrderItems().getBottom()}</h4>
+                                            <h4 class="col-6">${item.getOrderItems().getBottomPrice()} kr.</h4>
+                                            <hr class="mb-5">
+
+                                            <h4 class="col-6">Topping: ${item.getOrderItems().getTopping()}</>
+                                            <h4 class="col-6">${item.getOrderItems().getToppingPrice()} kr.</h4> <br>
+                                            <hr class="mb-5">
+
+                                            <h4 class="col-6">Antal: ${item.getOrderItems().getAmount()}</h4>
+                                            <h4 class="col-6">i alt: ${item.getOrderItems().getTotalPrice()} kr.</h4>
+                                            <hr class="mb-3">
+
+                                            <input type="hidden" name="orderId" value="${item.getId()}">
+                                            <input class="btn btn-cupcakes-secondary float-end me-3" type="submit"
+                                                   value="Fjern ordre">
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </c:forEach>
                         </div>
                     </div>

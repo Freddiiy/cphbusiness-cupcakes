@@ -99,7 +99,6 @@ public class CartController {
 
     public void removeItem(int cartId, String sessionId) {
         String sql = "DELETE FROM Cart WHERE id_cart = ? AND id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
-        System.out.println(cartId);
 
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -111,6 +110,20 @@ public class CartController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void removeCart(String sessionId) {
+        String sql = "DELETE FROM Cart WHERE id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
+
+        try(Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, sessionId);
+
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     public double totalPriceOfCart(String sessionId) {

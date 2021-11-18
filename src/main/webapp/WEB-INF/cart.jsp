@@ -28,8 +28,7 @@
                                             <hr class="mb-3">
                                         </div>
                                         <input type="hidden" name="cartId" value="${item.getId()}">
-                                        <input class="btn btn-cupcakes-secondary float-end me-3" type="submit"
-                                               value="Fjern fra kurv">
+                                        <input class="btn btn-cupcakes-secondary float-end me-3" type="submit" value="Fjern fra kurv">
                                     </form>
                                 </div>
                             </c:forEach>
