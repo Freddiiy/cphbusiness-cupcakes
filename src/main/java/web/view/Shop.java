@@ -17,9 +17,15 @@ public class Shop extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        UserController userController = new UserController(new Database());
+        HttpSession session = request.getSession();
+        if (userController.validateSession(session)) {
+            List cupcakeData = new CupcakeInfo(new Database()).getAllItems();
+            request.setAttribute("cupcakeData", cupcakeData);
+            request.getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("/login");
+        }
 
-        List cupcakeData = new CupcakeInfo(new Database()).getAllItems();
-        request.setAttribute("cupcakeData", cupcakeData);
-        request.getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
     }
 }

@@ -15,7 +15,13 @@ public class CustomShop extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("/WEB-INF/customShop.jsp").forward(request, response);
+        UserController userController = new UserController(new Database());
+        HttpSession session = request.getSession();
+        if (userController.validateSession(session)) {
+            request.getRequestDispatcher("/WEB-INF/customShop.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("/login");
+        }
     }
 
     @Override

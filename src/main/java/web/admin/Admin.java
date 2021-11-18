@@ -21,14 +21,14 @@ public class Admin extends HttpServlet {
         OrderController orderController = new OrderController(new Database());
         HttpSession session = request.getSession();
 
-        if(!userController.validateSession(session) && !userController.isAdmin(session.getId())) {
-            response.sendRedirect(request.getContextPath() + "/");
-        } else {
+        if(userController.validateSession(session) && userController.isAdmin(session.getId())) {
             String sessionID = request.getSession().getId();
             List orderList = orderController.adminGetOrders(sessionID);
 
             request.setAttribute("orderList", orderList);
             request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 }
