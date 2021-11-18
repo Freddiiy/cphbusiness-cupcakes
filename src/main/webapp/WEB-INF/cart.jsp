@@ -28,7 +28,8 @@
                                             <hr class="mb-3">
                                         </div>
                                         <input type="hidden" name="cartId" value="${item.getId()}">
-                                        <input class="btn btn-cupcakes-secondary float-end me-3" type="submit" value="Fjern fra kurv">
+                                        <input class="btn btn-cupcakes-secondary float-end me-3" type="submit"
+                                               value="Fjern fra kurv">
                                     </form>
                                 </div>
                             </c:forEach>
@@ -41,7 +42,19 @@
                                         <c:forEach var="order" items="${sessionScope.cartList}">
                                             <input type="hidden" name="order" value="">
                                         </c:forEach>
-                                        <input class="btn btn-cupcakes-secondary float-end me-3" style="padding-left: 5rem; padding-right: 5rem;" type="submit" value="Køb">
+                                        <c:if test="${param.error==1}">
+                                            <div class="row">
+
+                                                <div class="col-9">
+                                                </div>
+                                                <div class="col-3 alert alert-danger text-center" role="alert">
+                                                    Du har ikke nok penge.
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                        <input class="btn btn-cupcakes-secondary float-end me-3"
+                                               style="padding-left: 5rem; padding-right: 5rem;" type="submit"
+                                               value="Køb">
                                     </form>
                                 </div>
                             </c:if>
@@ -56,5 +69,5 @@
             </c:choose>
         </jsp:body>
     </t:navbar>
-    <t:footer />
+    <t:footer/>
 </t:head>
