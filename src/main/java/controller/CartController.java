@@ -111,4 +111,29 @@ public class CartController {
             throwables.printStackTrace();
         }
     }
+
+    public double totalPriceOfCart(String sessionId) {
+        double totalPrice = 0;
+
+        String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * Cartitems.amount) AS total_price, Cartitems.id_cartitems, Cartitems.amount, Cart.id_cart, Users.id_user FROM Cart " +
+                "INNER JOIN Cartitems ON Cart.id_cartitems = Cartitems.id_cartitems " +
+                "INNER JOIN Bottom ON Cartitems.id_bottom = Bottom.id_bottom " +
+                "INNER JOIN Topping ON Cartitems.id_topping = Topping.id_topping " +
+                "INNER JOIN Users ON Cart.id_user = Users.id_user " +
+                "WHERE Users.id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
+
+        try(Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, sessionId);
+
+            ResultSet resultSet = ps.executeQuery();
+            while(resultSet.next()) {
+                totalPrice += resultSet.getDouble("total_price");
+            }
+            return totalPrice;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return totalPrice;
+    }
 }

@@ -25,8 +25,10 @@ public class CartView extends HttpServlet {
         } else {
             String sessionID = request.getSession().getId();
             List cartList = cartController.getCart(sessionID);
+            double totalPrice = cartController.totalPriceOfCart(sessionID);
 
-            session.setAttribute("orderList", cartList);
+            session.setAttribute("cartList", cartList);
+            session.setAttribute("totalPrice", totalPrice);
             request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
         }
     }
