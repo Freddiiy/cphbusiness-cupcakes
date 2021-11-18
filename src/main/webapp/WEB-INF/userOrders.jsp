@@ -5,27 +5,18 @@
 <t:head>
     <t:navbar>
         <jsp:body>
-            <div class="container"  style="margin-top: 80px">
-                <table class="table table-striped table-borderless flex-column table-hover container" id="table">
-                    <thead class="table-active">
-                    <th class="col">Bottom</th>
-                    <th class="col">Pris</th>
-                    <th class="col">Topping</th>
-                    <th class="col">Pris</th>
-                    <th class="col">Total</th>
-                    <th class="col">Antal</th>
-                    </thead>
+            <div class="container" style="margin-top: 80px">
                 <c:forEach var="item" items="${requestScope.orderList}">
-                    <tr>
-                        <td>${item.getBottom()}</td>
-                        <td>${item.getBottomPrice()} kr.</td>
-                        <td>${item.getTopping()}</td>
-                        <td>${item.getToppingPrice()} kr.</td>
-                        <td>${item.getTotalPrice()} kr.</td>
-                        <td>${item.getAmount()} stk.</td>
-                    </tr>
+                    <form method="post" action="${pageContext.request.contextPath}/removeFromCart">
+                        <h6>${item.getId()}</h6>
+                        <h6>${item.getUserId()}</h6>
+                        <h6>${item.getOrderItems().getBottom()}</h6>
+                        <h6>${item.getOrderItems().getTopping()}</h6>
+                        <h6>${item.getOrderItems().getAmount()}</h6>
+                        <input type="hidden" name="cartId" value="${item.getId()}">
+                        <input type="submit" value="Fjern fra kurv">
+                    </form>
                 </c:forEach>
-                </table>
             </div>
         </jsp:body>
     </t:navbar>

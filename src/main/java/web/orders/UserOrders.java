@@ -1,6 +1,7 @@
-package web.view;
+package web.orders;
 
 
+import controller.OrderController;
 import controller.UserController;
 import model.CustomCupcake;
 import persistance.Database;
@@ -18,13 +19,14 @@ public class UserOrders extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UserController userController = new UserController(new Database());
+        OrderController orderController = new OrderController(new Database());
         HttpSession session = request.getSession();
 
         if(!userController.validateSession(session)) {
             response.sendRedirect(request.getContextPath() + "/login");
         } else {
             String sessionID = request.getSession().getId();
-            List orderList = userController.getOrdersFromDb(sessionID);
+            List orderList = orderController.getOrders(sessionID);
 
             request.setAttribute("orderList", orderList);
             request.getRequestDispatcher("/WEB-INF/userOrders.jsp").forward(request, response);

@@ -46,6 +46,11 @@
                                data-bs-toggle="dropdown" aria-expanded="false">${sessionScope.user.email}</a>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-sm-start dropdown-menu-lg-end opacity-75"
                                 aria-labelledby="navbarDarkDropdownMenuLink" style="margin-top: 7px;">
+                                <c:choose>
+                                    <c:when test="${sessionScope.user.role == 'Admin'}">
+                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin">Admin</a></li>
+                                    </c:when>
+                                </c:choose>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Min profil</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/orders">Mine ordrer</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log ud</a></li>

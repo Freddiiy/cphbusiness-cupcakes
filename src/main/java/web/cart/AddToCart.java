@@ -1,4 +1,4 @@
-package web.view;
+package web.cart;
 
 import controller.CartController;
 import controller.CartItemsController;
@@ -22,7 +22,7 @@ public class AddToCart extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String bottom = request.getParameter("bottom");
         String topping = request.getParameter("topping");
         int amount = Integer.parseInt(request.getParameter("amount"));
@@ -35,5 +35,8 @@ public class AddToCart extends HttpServlet {
         CartItems cartItems = new CartItems(cupcake.getBottom(), cupcake.getTopping(), cupcake.getAmount());
         CartController cartController = new CartController(new Database());
         cartController.addToCart(cartItems, sessionID);
+
+        response.sendRedirect("/shop");
+
     }
 }

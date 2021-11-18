@@ -1,5 +1,7 @@
 package web.auth;
 
+import controller.CartController;
+import model.Cart;
 import model.User;
 import persistance.Database;
 import controller.UserController;
@@ -38,7 +40,6 @@ public class Login extends HttpServlet {
             User user = userController.getUserFromDb(email, password);
 
             if(user != null && userController.emailExists(user.getEmail())) {
-
                 user.setSessionID(sessionID);
                 session.setAttribute("user", user);
                 userController.updateSessionID(user.getEmail(), user.getSessionID());

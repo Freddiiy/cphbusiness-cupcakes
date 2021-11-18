@@ -68,38 +68,6 @@ public class UserController {
         return null;
     }
 
-    public List getOrdersFromDb(String sessionId) {
-
-        String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * amount) AS total_price, amount ,Users.email FROM Orders " +
-                "INNER JOIN Bottom ON Orders.id_bottom = Bottom.id_bottom " +
-                "INNER JOIN Topping ON Orders.id_topping = Topping.id_topping " +
-                "INNER JOIN Users  ON Orders.id_user = Users.id_user " +
-                "WHERE Users.id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
-
-        List<Cupcake> list = new ArrayList<>();
-
-        try(Connection connection = database.connect()) {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, sessionId);
-
-            ResultSet resultSet = ps.executeQuery();
-            while(resultSet.next()) {
-                list.add(new Cupcake(
-                        resultSet.getString("Bottom.name"),
-                        resultSet.getDouble("Bottom.bottomPrice"),
-                        resultSet.getString("Topping.name"),
-                        resultSet.getDouble("Topping.toppingPrice"),
-                        resultSet.getDouble("total_price"),
-                        resultSet.getInt("amount")));
-
-            }
-                return list;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return list;
-    }
-
     public void updateSessionID(String email, String sessionID) {
         String sql = "UPDATE Users SET sessionID = ? WHERE email = ?";
 
@@ -225,5 +193,23 @@ public class UserController {
     public boolean matchHashedPassword(String password, String hash) {
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hash);
         return result.verified;
+    }
+
+    public boolean isAdmin(String sessionId) {
+
+        String sql = "SELECT role FROM Users WHERE sessionID = ?";
+        try (Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, sessionId);
+
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {
+                return resultSet.getString("role").equals("Admin");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 }

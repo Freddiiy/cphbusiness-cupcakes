@@ -1,8 +1,6 @@
 package controller;
 
-import model.CartItems;
-import model.Cupcake;
-import model.CustomCupcake;
+import model.*;
 import persistance.Database;
 
 import java.sql.*;
@@ -64,36 +62,53 @@ public class CartController {
     }
 
     public List getCart(String sessionId) {
-        String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * Cartitems.amount) AS total_price, Cartitems.amount FROM Cart " +
+        String sql = "SELECT Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice, ((Bottom.bottomPrice + Topping.toppingPrice) * Cartitems.amount) AS total_price, Cartitems.id_cartitems, Cartitems.amount, Cart.id_cart, Users.id_user FROM Cart " +
                 "INNER JOIN Cartitems ON Cart.id_cartitems = Cartitems.id_cartitems " +
                 "INNER JOIN Bottom ON Cartitems.id_bottom = Bottom.id_bottom " +
                 "INNER JOIN Topping ON Cartitems.id_topping = Topping.id_topping " +
                 "INNER JOIN Users ON Cart.id_user = Users.id_user " +
                 "WHERE Users.id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
 
-        List<Cupcake> list = new ArrayList<>();
+        List<Cart> cartList = new ArrayList<>();
 
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, sessionId);
 
             ResultSet resultSet = ps.executeQuery();
-            while(resultSet.next()) {
-                list.add(new Cupcake(
-                        resultSet.getString("Bottom.name"),
-                        resultSet.getDouble("Bottom.bottomPrice"),
-                        resultSet.getString("Topping.name"),
-                        resultSet.getDouble("Topping.toppingPrice"),
-                        resultSet.getDouble("total_price"),
-                        resultSet.getInt("amount")));
-
+            while(resultSet.next() && !resultSet.wasNull()) {
+                cartList.add(new Cart(resultSet.getInt("Cart.id_cart"),
+                        resultSet.getInt("Users.id_user"),
+                        new CartItems(resultSet.getInt("Cartitems.id_cartitems"),
+                                resultSet.getString("Bottom.name"),
+                                resultSet.getDouble("Bottom.bottomPrice"),
+                                resultSet.getString("Topping.name"),
+                                resultSet.getDouble("Topping.toppingPrice"),
+                                resultSet.getInt("Cartitems.amount"),
+                                resultSet.getDouble("total_price"))));
             }
-            System.out.println(list.get(1).getName());
-            return list;
+            if (cartList.isEmpty()) {
+                return null;
+            }
+            return cartList;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return list;
+        return cartList;
+    }
 
+    public void removeItem(int cartId, String sessionId) {
+        String sql = "DELETE FROM Cart WHERE id_cart = ? AND id_user = (SELECT id_user FROM Users WHERE sessionID = ?)";
+
+        try(Connection connection = database.connect()) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, cartId);
+            ps.setString(2, sessionId);
+
+
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

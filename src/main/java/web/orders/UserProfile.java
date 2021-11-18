@@ -1,4 +1,4 @@
-package web.view;
+package web.orders;
 
 
 import persistance.Database;

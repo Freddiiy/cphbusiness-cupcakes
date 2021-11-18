@@ -1,7 +1,6 @@
-package web.view;
+package web.cart;
 
 import controller.CartController;
-import controller.CupcakeController;
 import persistance.Database;
 import controller.UserController;
 
@@ -27,7 +26,7 @@ public class CartView extends HttpServlet {
             String sessionID = request.getSession().getId();
             List cartList = cartController.getCart(sessionID);
 
-            request.setAttribute("cartList", cartList);
+            session.setAttribute("orderList", cartList);
             request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
         }
     }

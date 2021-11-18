@@ -1,6 +1,6 @@
 package model;
 
-public class CartItems {
+public class OrderItems {
     private int id;
     private String bottom;
     private double bottomPrice;
@@ -9,14 +9,14 @@ public class CartItems {
     private int amount;
     private double totalPrice;
 
-    public CartItems(int id, String bottom, String topping, int amount) {
+    public OrderItems(int id, String bottom, String topping, int amount) {
         this.id = id;
         this.bottom = bottom;
         this.topping = topping;
         this.amount = amount;
     }
 
-    public CartItems(int id, String bottom, double bottomPrice, String topping, double toppingPrice, int amount, double totalPrice) {
+    public OrderItems(int id, String bottom, double bottomPrice, String topping, double toppingPrice, int amount, double totalPrice) {
         this.id = id;
         this.bottom = bottom;
         this.bottomPrice = bottomPrice;
@@ -26,7 +26,7 @@ public class CartItems {
         this.totalPrice = totalPrice;
     }
 
-    public CartItems(String bottom, String topping, int amount) {
+    public OrderItems(String bottom, String topping, int amount) {
         this.bottom = bottom;
         this.topping = topping;
         this.amount = amount;
