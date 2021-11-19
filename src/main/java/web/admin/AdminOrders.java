@@ -12,8 +12,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 
-@WebServlet(name = "Admin", urlPatterns = {"/admin"})
-public class Admin extends HttpServlet {
+@WebServlet(name = "AdminOrders", urlPatterns = {"/admin/orders"})
+public class AdminOrders extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -23,10 +23,11 @@ public class Admin extends HttpServlet {
 
         if(userController.validateSession(session) && adminController.isAdmin(session.getId())) {
             String sessionID = request.getSession().getId();
-            List userList = adminController.getUsers(sessionID);
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            List orderList = adminController.getOrdersByUserId(sessionID, userId);
 
-            request.setAttribute("userList", userList);
-            request.getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
+            request.setAttribute("orderList", orderList);
+            request.getRequestDispatcher("/WEB-INF/adminOrders.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/");
         }

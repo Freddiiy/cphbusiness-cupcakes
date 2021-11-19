@@ -17,10 +17,9 @@ public class CartController {
     public void addToCart(CartItems cartItems, String sessionId) {
         int idKey = 0;
 
-        String sql = "INSERT INTO Cartitems (id_bottom, id_topping, id_user, amount) VALUES(" +
+        String sql = "INSERT INTO Cartitems (id_bottom, id_topping, amount) VALUES(" +
                 "(SELECT id_bottom FROM Bottom WHERE name = ?)," +
                 "(SELECT id_topping FROM Topping WHERE name = ?)," +
-                "(SELECT id_user FROM Users WHERE sessionID = ?)," +
                 "?)";
 
         try (Connection connection = database.connect()) {
@@ -28,8 +27,7 @@ public class CartController {
 
             ps.setString(1, cartItems.getBottom());
             ps.setString(2, cartItems.getTopping());
-            ps.setString(3, sessionId);
-            ps.setInt(4, cartItems.getAmount());
+            ps.setInt(3, cartItems.getAmount());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {

@@ -112,7 +112,7 @@ public class UserController {
                 String sessionIDFromDb = resultSet.getString("sessionID");
 
                 if (email.equals(emailFromDb) && matchHashedPassword(password, passwordFromDb)) {
-                    return new User(id, emailFromDb, passwordFromDb, balanceFromDb, roleFromDb, sessionIDFromDb);
+                    return new User(id, emailFromDb, balanceFromDb, roleFromDb, sessionIDFromDb);
                 }
 
             }
@@ -179,24 +179,4 @@ public class UserController {
         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hash);
         return result.verified;
     }
-
-    //admin permissions
-    public boolean isAdmin(String sessionId) {
-
-        String sql = "SELECT role FROM Users WHERE sessionID = ?";
-        try (Connection connection = database.connect()) {
-            PreparedStatement ps = connection.prepareStatement(sql);
-
-            ps.setString(1, sessionId);
-
-            ResultSet resultSet = ps.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getString("role").equals("Admin");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return false;
-    }
-
 }
