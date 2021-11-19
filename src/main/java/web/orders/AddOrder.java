@@ -36,7 +36,7 @@ public class AddOrder extends HttpServlet {
         for (Cart cartitem : cart) {
             price += cartitem.getCartItems().getTotalPrice();
         }
-        if (userController.getUserBalance(session.getId()) > price) {
+        if (userController.getUserBalance(session.getId()) >= price) {
 
             for (Cart cartitems : cart) {
                 orderController.addToOrder(new CartItems(cartitems.getCartItems().getBottom(), cartitems.getCartItems().getTopping(), cartitems.getCartItems().getAmount()), session.getId());

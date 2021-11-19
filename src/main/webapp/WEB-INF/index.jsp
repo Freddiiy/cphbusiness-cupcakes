@@ -35,8 +35,8 @@
                             </div>
                             <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <h5 class="card-title">Olsker Cupcakes er mere end bare cupcakes</h5>
+                                    <p class="card-text">Det er løftet om en ekstraordinær smagsoplevelse. Hos Olsker Cupcakes er kvalitet og indtryk vigtige fokuspunkter som adskiller os fra andre.</p>
                                 </div>
                             </div>
                         </div>
@@ -46,44 +46,44 @@
                     <div class="card mb-3">
                         <div class="row g-0">
                             <div class="col-12 col-md-12 col-lg-5 p-0 pt-lg overflow-hidden">
-                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/cardImg/card-img-2.png" alt="...">
+                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/cardImg/card-img.png" alt="...">
                             </div>
                             <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    <h5 class="card-title">Bagt med kærlighed og højeste kvalitet</h5>
+                                    <p class="card-text">Olsker Cupcakes garanterer den bedste kvalitets cupcakes med brug af eksotiske og høj-kvalitets ingredienser. Cupcakes er ikke bare en lækker snack, det er en kunstform.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card">
-                        <img src="${pageContext.request.contextPath}/resources/img/cardImg/card-img.png"
-                             class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-12 col-md-12 col-lg-5 p-0 pt-lg overflow-hidden">
+                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/cardImg/card-img.png" alt="...">
+                            </div>
+                            <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Håndlavet fra bunden</h5>
+                                    <p class="card-text">Alle Olsker Cupcakes er håndlavet for at sikre den bedste kvalitet. Vores mål er at skabe en oplevelse som gør dig glad i både mund og sind.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card">
-                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-customCupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
-                             class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="https://media.istockphoto.com/photos/photo-of-female-hand-holding-customCupcake-on-the-wonderful-red-background-picture-id677634654?k=20&m=677634654&s=170667a&w=0&h=VUsc-QKBx_5g4nQgyi4yURu7g0qDxjbQN3JpH2W9maA="
-                             class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-12 col-md-12 col-lg-5 p-0 pt-lg overflow-hidden">
+                                <img class="card-img-container" src="${pageContext.request.contextPath}/resources/img/cardImg/card-img.png" alt="...">
+                            </div>
+                            <div class="rounded-3 col-12 col-md-12 col-lg-7 my-3 my-md-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Om os</h5>
+                                    <p class="card-text">Olsker Cupcakes blev stiftet i 2019 med målet at lave cupcakes af den højeste kvalitet. Holdet bag Olsker Cupcakes har længe haft lidenskab til kunsten bag cupcakes og fører det ud i virkeligheden med over 30 forskellige varianter af cupcakes.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
