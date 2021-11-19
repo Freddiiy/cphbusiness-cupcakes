@@ -33,7 +33,7 @@
                             </div>
                             <p class="lead">${requestScope.cupcakeData.getDesc()}</p>
                             <div class="d-flex">
-                                <form action="/addToCart" method="POST">
+                                <form action="${pageContext.request.contextPath}/addToCart" method="POST">
                                     <div>
                                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem; float: left" name="amount">
                                         <input class="btn btn-outline-dark flex-shrink-0" type="submit" value="Tilføj til kurven">
