@@ -5,10 +5,7 @@ import model.OrderItems;
 import model.User;
 import persistance.Database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +45,23 @@ public class AdminController {
 
         } else {
             return null;
+        }
+    }
+
+    public void updateUserBalance(double addBalance, int userId, String sessionId) {
+        if (isAdmin(sessionId)) {
+            String sql = "UPDATE Users SET balance = balance + ? WHERE id_user = ?";
+
+            try (Connection connection = database.connect()) {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+                ps.setDouble(1, addBalance);
+                ps.setInt(2, userId);
+
+                ps.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
