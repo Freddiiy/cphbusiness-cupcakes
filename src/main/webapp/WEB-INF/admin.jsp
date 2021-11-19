@@ -26,6 +26,13 @@
                                     </div>
 
                                     <div class="row justify-content-end m-0 p-0 p-md-0 m-md-0">
+                                        <div class="col-2">
+                                            <button type="button" class="btn btn-cupcakes-secondary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modalAddBalance-${item.getId()}">
+                                                Giv kredit
+                                            </button>
+                                        </div>
                                         <form class="col-2" method="get"
                                               action="${pageContext.request.contextPath}/admin/orders?userId=${item.getId()}">
                                             <input type="hidden" name="userId" value="${item.getId()}">
@@ -40,7 +47,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Modal -->
+                                    <!-- Modal delete user -->
                                     <div class="modal fade" id="modalVerify-${item.getId()}" data-bs-keyboard="false"
                                          tabindex="-1" aria-labelledby="modal" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
@@ -59,6 +66,34 @@
                                                         <input type="hidden" name="userId" value="${item.getId()}">
                                                         <input class="btn btn-cupcakes-secondary" type="submit"
                                                                value="Slet ${item.getEmail()}">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal add blance to user -->
+                                    <div class="modal fade" id="modalAddBalance-${item.getId()}" data-bs-keyboard="false"
+                                         tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalBalanceTitle">Modal title</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h4>Hvor meget vil du give ${item.getEmail()}?</h4>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form class="row justify-content-end" method="post"
+                                                          action="${pageContext.request.contextPath}/adminAddBalance">
+                                                        <input type="hidden" name="userId" value="${item.getId()}">
+                                                        <div class="col-4">
+                                                            <input class="form-control" type="number" name="addToBalance">
+                                                        </div>
+                                                        <input class="col-4 btn btn-cupcakes-secondary" type="submit"
+                                                               value="Indsæt beløb">
                                                     </form>
                                                 </div>
                                             </div>

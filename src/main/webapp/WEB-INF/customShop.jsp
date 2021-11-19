@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="d-flex">
                                     <div>
-                                        <input class="form-control text-center me-3" id="amount" type="num" value="1"
+                                        <input class="form-control text-center me-3" id="amount" type="number" value="1"
                                                style="max-width: 3rem; float: left" name="amount">
                                         <input class="btn btn-outline-dark flex-shrink-0" type="submit"
                                                value="Tilføj til kurven">
