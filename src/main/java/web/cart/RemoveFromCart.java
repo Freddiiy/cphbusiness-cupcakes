@@ -1,15 +1,10 @@
 package web.cart;
 
 import controller.CartController;
-import controller.CartItemsController;
-import controller.CupcakeController;
-import model.CartItems;
-import model.Cupcake;
+
 import persistance.Database;
-import controller.UserController;
 
 import java.io.*;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;

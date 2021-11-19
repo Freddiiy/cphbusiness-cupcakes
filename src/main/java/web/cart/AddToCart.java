@@ -1,12 +1,9 @@
 package web.cart;
 
 import controller.CartController;
-import controller.CartItemsController;
-import controller.CupcakeController;
 import model.CartItems;
 import model.Cupcake;
 import persistance.Database;
-import controller.UserController;
 
 import java.io.*;
 import javax.servlet.ServletException;
@@ -30,9 +27,9 @@ public class AddToCart extends HttpServlet {
         HttpSession session = request.getSession();
         String sessionID = session.getId();
 
-        Cupcake cupcake = new Cupcake(bottom, topping, amount);
+        Cupcake cupcake = new Cupcake(bottom, topping);
 
-        CartItems cartItems = new CartItems(cupcake.getBottom(), cupcake.getTopping(), cupcake.getAmount());
+        CartItems cartItems = new CartItems(cupcake.getBottom(), cupcake.getTopping(), amount);
         CartController cartController = new CartController(new Database());
         cartController.addToCart(cartItems, sessionID);
 

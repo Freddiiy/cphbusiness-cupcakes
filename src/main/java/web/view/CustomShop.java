@@ -1,6 +1,5 @@
 package web.view;
 
-import controller.CupcakeController;
 import persistance.Database;
 import controller.UserController;
 

@@ -30,10 +30,10 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/shop">Shop</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#prices">Udvalg</a>
+                    <a class="nav-link" href="">Om os</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">Om os</a>
+                    <a class="nav-link" href="">Kontakt</a>
                 </li>
             </ul>
         </div>

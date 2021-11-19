@@ -4,7 +4,6 @@ import model.Cupcake;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CupcakeInfo {
@@ -14,7 +13,7 @@ public class CupcakeInfo {
     }
 
     public Cupcake getItemFromID(String id) {
-        String sql = "SELECT PremadeCupcake.*, Bottom.bottomPrice, Topping.toppingPrice FROM PremadeCupcake\n" +
+        String sql = "SELECT PremadeCupcake.*, Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice FROM PremadeCupcake\n" +
                 "JOIN Bottom ON PremadeCupcake.bottom = Bottom.id_bottom\n" +
                 "JOIN Topping ON PremadeCupcake.topping = Topping.id_topping\n" +
                 "WHERE id_item = ?";
@@ -32,9 +31,9 @@ public class CupcakeInfo {
                     resultSet.getString("name"),
                     resultSet.getString("desc"),
                     resultSet.getString("imageURL"),
-                    resultSet.getInt("bottom"),
+                    resultSet.getString("Bottom.name"),
                     resultSet.getInt("bottomPrice"),
-                    resultSet.getInt("topping"),
+                    resultSet.getString("Topping.name"),
                     resultSet.getInt("toppingPrice")
 
                 ));
@@ -46,10 +45,11 @@ public class CupcakeInfo {
     }
 
     public List getAllItems() {
-        String sql = "SELECT PremadeCupcake.*, Bottom.bottomPrice, Topping.toppingPrice \n" +
+        String sql = "SELECT PremadeCupcake.*, Bottom.name, Bottom.bottomPrice, Topping.name, Topping.toppingPrice \n" +
                 "FROM PremadeCupcake\n" +
                 "JOIN Bottom ON PremadeCupcake.bottom = Bottom.id_bottom\n" +
                 "JOIN Topping ON PremadeCupcake.topping = Topping.id_topping ORDER BY id_item;";
+
         List<Cupcake> list = new ArrayList<>();
         try(Connection connection = database.connect()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -61,9 +61,9 @@ public class CupcakeInfo {
                     resultSet.getString("name"),
                     resultSet.getString("desc"),
                     resultSet.getString("imageURL"),
-                    resultSet.getInt("bottom"),
+                    resultSet.getString("Bottom.name"),
                     resultSet.getInt("bottomPrice"),
-                    resultSet.getInt("topping"),
+                    resultSet.getString("Topping.name"),
                     resultSet.getInt("toppingPrice")
                 ));
             }

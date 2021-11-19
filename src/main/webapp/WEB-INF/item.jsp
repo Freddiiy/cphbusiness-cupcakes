@@ -38,8 +38,8 @@
                                         <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem; float: left" name="amount">
                                         <input class="btn btn-outline-dark flex-shrink-0" type="submit" value="Tilføj til kurven">
                                     </div>
-                                    <input name="toppingID" type="hidden" value="${requestScope.cupcakeData.getToppingID()}">
-                                    <input name="bottomID" type="hidden" value="${requestScope.cupcakeData.getBottomID()}">
+                                    <input name="topping" type="hidden" value="${requestScope.cupcakeData.getTopping()}">
+                                    <input name="bottom" type="hidden" value="${requestScope.cupcakeData.getBottom()}">
                                     <input name="sessionID" type="hidden" value="${requestScope.sessionID}">
                                 </form>
                             </div>

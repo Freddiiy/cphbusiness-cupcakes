@@ -27,7 +27,6 @@ public class AddOrder extends HttpServlet {
         //Tak til Benjamin på YouTube for at redde dagen med mit lortekode
         HttpSession session = request.getSession();
         List<Cart> cart = (List<Cart>) session.getAttribute("cartList");
-        System.out.println(cart.size());
 
         UserController userController = new UserController(new Database());
         OrderController orderController = new OrderController(new Database());

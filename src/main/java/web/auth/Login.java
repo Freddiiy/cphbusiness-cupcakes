@@ -1,7 +1,5 @@
 package web.auth;
 
-import controller.CartController;
-import model.Cart;
 import model.User;
 import persistance.Database;
 import controller.UserController;

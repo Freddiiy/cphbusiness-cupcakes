@@ -12,8 +12,8 @@
     <t:navbar>
         <jsp:body>
             <section class="py-5">
-                <div class="container px-4 px-lg-5 mt-5">
-                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="container-md px-5 px-lg-5 mt-5">
+                    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
                         <c:forEach var="item" items="${requestScope.cupcakeData}">
                             <div class="col mb-5">
                                 <div class="card h-100">

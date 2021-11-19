@@ -9,8 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.sql.*;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserController {
     private final Database database;
@@ -32,7 +30,7 @@ public class UserController {
 
             ps.setString(1, user.getEmail());
             ps.setString(2, hashPassword(user.getPassword()));
-            ps.setInt(3, 0);
+            ps.setInt(3, 300);
             ps.setString(4, user.getRole());
             ps.setString(5, user.getSessionID());
 
@@ -42,28 +40,6 @@ public class UserController {
             throwables.printStackTrace();
         }
 
-    }
-
-    public User getUserBySessionId(String sessionId) {
-        String sql = "SELECT (id_user ,email, balance, role) from Users WHERE sessionID = ?";
-
-        try (Connection connection = database.connect()) {
-            PreparedStatement ps = connection.prepareStatement(sql);
-
-            ps.setString(1, sessionId);
-
-            ResultSet resultSet = ps.executeQuery();
-            if (resultSet.next()) {
-                int id = resultSet.getInt("id_user");
-                String emailFromDb = resultSet.getString("email");
-                double balanceFromDb = resultSet.getDouble("balance");
-                String roleFromDb = resultSet.getString("role");
-                return new User(id, emailFromDb, balanceFromDb, roleFromDb, sessionId);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
     }
 
     public double getUserBalance(String sessionId) {
@@ -145,29 +121,6 @@ public class UserController {
             throwables.printStackTrace();
         }
         return null;
-    }
-
-    public String getBalance(User user) {
-        String sql = "SELECT balance FROM Users WHERE email=?";
-
-        try (Connection connection = database.connect()) {
-            PreparedStatement ps = connection.prepareStatement(sql);
-
-            ps.setString(1, user.getEmail());
-
-            ResultSet resultSet = ps.executeQuery();
-
-            if (resultSet.next()) {
-                double balance = resultSet.getDouble("balance");
-                user.setBalance(balance);
-
-                DecimalFormat df = new DecimalFormat("#0.00");
-                return df.format(balance);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return "Error";
     }
 
     // Checks

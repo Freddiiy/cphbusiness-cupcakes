@@ -6,38 +6,33 @@ public class Cupcake {
     private String desc;
     private String imageURL;
     private String bottom;
-    private int bottomID;
     private double bottomPrice;
     private String topping;
-    private int toppingID;
     private double toppingPrice;
     private double totalPrice;
-    private int amount;
 
-    public Cupcake(int id, String name, String desc, String imageURL, int bottomID, int bottomPrice, int toppingID, int toppingPrice) {
+    public Cupcake(int id, String name, String desc, String imageURL, String bottom, int bottomPrice, String topping, int toppingPrice) {
         this.id = id;
         this.name = name;
         this.desc = desc;
         this.imageURL = imageURL;
-        this.bottomID = bottomID;
+        this.bottom = bottom;
         this.bottomPrice = bottomPrice;
-        this.toppingID = toppingID;
+        this.topping = topping;
         this.toppingPrice = toppingPrice;
     }
 
-    public Cupcake(String bottom, String topping, int amount) {
+    public Cupcake(String bottom, String topping) {
         this.bottom = bottom;
         this.topping = topping;
-        this.amount = amount;
     }
 
-    public Cupcake(String bottom, double bottomPrice, String topping, double toppingPrice, double totalPrice, int amount) {
+    public Cupcake(String bottom, double bottomPrice, String topping, double toppingPrice, double totalPrice) {
         this.bottom = bottom;
         this.bottomPrice = bottomPrice;
         this.topping = topping;
         this.toppingPrice = toppingPrice;
         this.totalPrice = totalPrice;
-        this.amount = amount;
     }
 
     public int getId() {
@@ -56,17 +51,11 @@ public class Cupcake {
         return imageURL;
     }
 
-    public int getBottomID() {
-        return bottomID;
-    }
 
     public double getBottomPrice() {
         return bottomPrice;
     }
 
-    public int getToppingID() {
-        return toppingID;
-    }
 
     public double getToppingPrice() {
         return toppingPrice;
@@ -78,10 +67,6 @@ public class Cupcake {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 
     public String getBottom() {
