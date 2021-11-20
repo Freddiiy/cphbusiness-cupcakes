@@ -56,12 +56,12 @@
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalVerifyTitle">Modal title</h5>
+                                                    <h5 class="modal-title" id="modalVerifyTitle">Slet bruger.</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h4>Er du sikker på at du vil slette ${item.getEmail()}</h4>
+                                                    <h4>Er du sikker på at du vil slette ${item.getEmail()}?</h4>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <form class="" method="post"
@@ -82,7 +82,7 @@
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalBalanceTitle">Modal title</h5>
+                                                    <h5 class="modal-title" id="modalBalanceTitle">Tilføj beløb.</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
