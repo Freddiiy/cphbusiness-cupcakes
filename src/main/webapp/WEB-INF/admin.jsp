@@ -8,38 +8,41 @@
             <c:choose>
                 <c:when test="${requestScope.userList != null}">
                     <div class="container" style="margin-top: 80px">
-                        <div class="bg-light rounded-3 p-0 p-md-5 mb-3">
-                            <h1>Vores kunder</h1>
+                        <div class="bg-light rounded-3 px-0 pt-4 p-md-5 mb-0">
+                            <h1 class="ps-4">Vores kunder</h1>
 
                             <c:forEach var="item" items="${requestScope.userList}">
                                 <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-3">
                                     <div class="row text-start px-5">
-                                        <h4 class="col-6">Email: ${item.getEmail()}</h4>
-                                        <h4 class="col-6">ID: ${item.getId()}</h4>
-                                        <hr class="mb-5">
+                                        <h4 class="col-12 col-lg-6 text-truncate">Email: ${item.getEmail()}</h4>
+                                        <hr class="d-lg-none mb-3 mb-lg-5">
+                                        <h4 class="col-12 col-lg-6">ID: ${item.getId()}</h4>
+                                        <hr class="mb-3 mb-md-5">
 
 
-                                        <h4 class="col-6">Rolle: ${item.getRole()}</h4>
-                                        <h4 class="col-6">Balance: ${item.getBalance()} kr.</h4>
-                                        <hr class="mb-3">
+                                        <h4 class="col-12 col-lg-6">Rolle: ${item.getRole()}</h4>
+                                        <hr class="d-lg-none mb-3 mb-lg-5">
+                                        <h4 class="col-12 col-lg-6">Balance: ${item.getBalance()} kr.</h4>
+                                        <hr class="mb-3 mb-md-5">
 
                                     </div>
 
-                                    <div class="row justify-content-end m-0 p-0 p-md-0 m-md-0">
-                                        <div class="col-2">
-                                            <button type="button" class="btn btn-cupcakes-secondary"
+                                    <div class="row align-content-center align-content-lg-end px-5">
+                                        <div class="col-12 col-lg-4 mb-1 mb-lg-0">
+                                            <button type="button" class="col-12 btn btn-cupcakes-secondary"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#modalAddBalance-${item.getId()}">
                                                 Giv kredit
                                             </button>
                                         </div>
-                                        <form class="col-2" method="get"
+                                        <form class="col-12 col-lg-4 mb-1 mb-lg-0" method="get"
                                               action="${pageContext.request.contextPath}/admin/orders?userId=${item.getId()}">
                                             <input type="hidden" name="userId" value="${item.getId()}">
-                                            <input class="btn btn-cupcakes-secondary" type="submit" value="Se ordre">
+                                            <input class="col-12 btn btn-cupcakes-secondary" type="submit"
+                                                   value="Se ordre">
                                         </form>
-                                        <div class="col-2">
-                                            <button type="button" class="btn btn-cupcakes-secondary"
+                                        <div class="col-12 col-lg-4 mb-1 mb-lg-0">
+                                            <button type="button" class="col-12 btn btn-cupcakes-secondary"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#modalVerify-${item.getId()}">
                                                 Slet bruger
@@ -64,7 +67,7 @@
                                                     <form class="" method="post"
                                                           action="${pageContext.request.contextPath}/adminRemoveUser">
                                                         <input type="hidden" name="userId" value="${item.getId()}">
-                                                        <input class="btn btn-cupcakes-secondary" type="submit"
+                                                        <input class="btn btn-outline-danger" type="submit"
                                                                value="Slet ${item.getEmail()}">
                                                     </form>
                                                 </div>
@@ -73,7 +76,8 @@
                                     </div>
 
                                     <!-- Modal add blance to user -->
-                                    <div class="modal fade" id="modalAddBalance-${item.getId()}" data-bs-keyboard="false"
+                                    <div class="modal fade" id="modalAddBalance-${item.getId()}"
+                                         data-bs-keyboard="false"
                                          tabindex="-1" aria-labelledby="modal" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -90,7 +94,8 @@
                                                           action="${pageContext.request.contextPath}/adminAddBalance">
                                                         <input type="hidden" name="userId" value="${item.getId()}">
                                                         <div class="col-4">
-                                                            <input class="form-control" type="number" name="addToBalance">
+                                                            <input class="form-control" type="number"
+                                                                   name="addToBalance">
                                                         </div>
                                                         <input class="col-4 btn btn-cupcakes-secondary" type="submit"
                                                                value="Indsæt beløb">

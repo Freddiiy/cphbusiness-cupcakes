@@ -35,8 +35,8 @@
 
                                             <input type="hidden" name="orderId" value="${item.getId()}">
                                             <input type="hidden" name="userId" value="${item.getUserId()}">
-                                            <div class="row">
-                                                <input class="col-3 btn btn-cupcakes-secondary float-end me-3" type="submit" value="Fjern ordre">
+                                            <div class="row justify-content-end">
+                                                <input class="col-12 col-lg-3 btn btn-cupcakes-secondary" type="submit" value="Fjern ordre">
                                             </div>
                                         </div>
                                     </div>

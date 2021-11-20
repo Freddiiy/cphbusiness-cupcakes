@@ -8,13 +8,13 @@
             <c:choose>
                 <c:when test="${sessionScope.cartList != null}">
                     <div class="container" style="margin-top: 80px">
-                        <div class="bg-light rounded-3 p-0 p-md-5 mb-3">
-                            <h1>Indkøbsvogn</h1>
+                        <div class="bg-light rounded-3 pt-3 p-md-5 mb-2">
+                            <h1 class="ps-4">Indkøbsvogn</h1>
 
                             <c:forEach var="item" items="${sessionScope.cartList}">
-                                <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-3">
+                                <div class="px-5 py-5 mb-5 bg-light border rounded shadow mx-3">
                                     <form method="post" action="${pageContext.request.contextPath}/removeFromCart">
-                                        <div class="row text-start px-5">
+                                        <div class="row text-start">
                                             <h4 class="col-6">Bund: ${item.getCartItems().getBottom()}</h4>
                                             <h4 class="col-6">${item.getCartItems().getBottomPrice()} kr.</h4>
                                             <hr class="mb-5">
@@ -28,7 +28,8 @@
                                             <hr class="mb-3">
                                         </div>
                                         <input type="hidden" name="cartId" value="${item.getId()}">
-                                        <input class="btn btn-cupcakes-secondary float-end me-3" type="submit"
+                                        <input class="col-12 col-md-4 btn btn-cupcakes-secondary float-end"
+                                               type="submit"
                                                value="Fjern fra kurv">
                                     </form>
                                 </div>
@@ -37,26 +38,20 @@
                                 <h1>${sessionScope.totalPrice} kr.</h1>
                             </div>
                             <c:if test="${sessionScope.cartList != null}">
-                                <div class="bg-light">
-                                    <form method="post" action="${pageContext.request.contextPath}/addOrder">
-                                        <c:forEach var="order" items="${sessionScope.cartList}">
-                                            <input type="hidden" name="order" value="">
-                                        </c:forEach>
-                                        <c:if test="${param.error==1}">
-                                            <div class="row">
-
-                                                <div class="col-9">
-                                                </div>
-                                                <div class="col-3 alert alert-danger text-center" role="alert">
-                                                    Du har ikke nok penge.
-                                                </div>
+                                <form class="" method="post" action="${pageContext.request.contextPath}/addOrder">
+                                    <c:if test="${param.error==1}">
+                                        <div class="row">
+                                            <div class="col-9">
                                             </div>
-                                        </c:if>
-                                        <input class="btn btn-cupcakes-secondary float-end me-3"
-                                               style="padding-left: 5rem; padding-right: 5rem;" type="submit"
-                                               value="Køb">
-                                    </form>
-                                </div>
+                                            <div class="col-3 alert alert-danger text-center" role="alert">
+                                                Du har ikke nok penge.
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <div class="bg-light p-5">
+                                        <input class="col-12 col-md-4 btn btn-cupcakes-secondary float-end" type="submit" value="Køb">
+                                    </div>
+                                </form>
                             </c:if>
                         </div>
                     </div>
