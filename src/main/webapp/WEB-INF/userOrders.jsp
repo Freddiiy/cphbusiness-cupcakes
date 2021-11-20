@@ -8,8 +8,8 @@
             <c:choose>
                 <c:when test="${requestScope.orderList != null}">
                     <div class="container" style="margin-top: 80px">
-                        <div class="bg-light rounded-3 p-0 p-md-5 mb-3">
-                            <h1>Mine ordre</h1>
+                        <div class="bg-light rounded-3 p-4 p-md-5 mb-3">
+                            <h1 class="ps-4">Mine ordre</h1>
 
                             <c:forEach var="item" items="${requestScope.orderList}">
                                 <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-3">
