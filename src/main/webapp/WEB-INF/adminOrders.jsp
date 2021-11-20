@@ -14,7 +14,7 @@
                             <c:forEach var="item" items="${requestScope.orderList}">
                                 <form method="POST" action="${pageContext.request.contextPath}/adminRemoveOrder">
 
-                                    <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-0"">
+                                    <div class="px-0 py-5 mb-5 bg-light border rounded shadow mx-0">
                                         <div class="row text-start px-5">
                                             <h4 class="col-12 col-lg-6 text-truncate">Bruger: ${item.getEmail()}</h4>
                                             <h4 class="col-12 col-lg-6 text-truncate">Ordre ID: ${item.getId()}</h4>
